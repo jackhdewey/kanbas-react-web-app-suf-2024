@@ -321,8 +321,8 @@ export default function Lab1() {
                 </form>
 
                 <h4>Anchor tag</h4>
-                Please
-                <a id="wd-lipsum" href="https://www.lipsum.com">click here</a>
+                Please 
+                <a id="wd-lipsum" href="https://www.lipsum.com"> click here </a> 
                 to get dummy text<br/>
                 <a id="wd-github" href="https://github.com/jackhdewey/kanbas-react-web-app-suf-2024">GitHub</a>
 
