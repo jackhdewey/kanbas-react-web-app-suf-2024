@@ -285,7 +285,7 @@ export default function Lab1() {
                 <h4 id="wd-dropdowns">Dropdowns</h4>
 
                 <h5>Select One</h5>
-                <label htmlFor="wd-select-one-genre">Favorite moive genre:</label>
+                <label htmlFor="wd-select-one-genre">Favorite moive genre:</label><br />
                 <select id="wd-select-one-genre">
                     <option value="COMEDY">Comedy</option>
                     <option value="DRAMA">Drama</option>
