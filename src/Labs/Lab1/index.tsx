@@ -46,24 +46,24 @@ export default function Lab1() {
                 How to make pancakes:
 
                 <ol id="wd-pancakes">
-                    <li>1. Mix dry ingredients.</li>
-                    <li>2. Add wet ingredients.</li>
-                    <li>3. Stir to combine.</li>
-                    <li>4. Heat a skillet or griddle.</li>
-                    <li>5. Pour batter onto the skillet.</li>
-                    <li>6. Cook until bubbly on top.</li>
-                    <li>7. Flip and cook the other side.</li>
-                    <li>8. Serve and enjoy!</li>
+                    <li>Mix dry ingredients.</li>
+                    <li>Add wet ingredients.</li>
+                    <li>Stir to combine.</li>
+                    <li>Heat a skillet or griddle.</li>
+                    <li>Pour batter onto the skillet.</li>
+                    <li>Cook until bubbly on top.</li>
+                    <li>Flip and cook the other side.</li>
+                    <li>Serve and enjoy!</li>
                 </ol>
 
                 My favorite recipe:
 
                 <ol id="wd-your-favorite-recipe">
-                    <li>1. Get out a bowl.</li>
-                    <li>2. Get out a spoon.</li>
-                    <li>3. Pour cereal into the bowl.</li>
-                    <li>4. Pour milk onto the cereal.</li>
-                    <li>5. Enjoy!</li>
+                    <li>Get out a bowl.</li>
+                    <li>Get out a spoon.</li>
+                    <li>Pour cereal into the bowl.</li>
+                    <li>Pour milk onto the cereal.</li>
+                    <li>Enjoy!</li>
                 </ol>
 
                 <h5>Unordered List Tag</h5>
