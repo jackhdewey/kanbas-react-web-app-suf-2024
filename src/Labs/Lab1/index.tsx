@@ -1,3 +1,5 @@
+import { Z_UNKNOWN } from "zlib";
+
 export default function Lab1() {
     return(
         <div id="wd-lab1">
@@ -63,6 +65,26 @@ export default function Lab1() {
                     <li>4. Pour milk onto the cereal.</li>
                     <li>5. Enjoy!</li>
                 </ol>
+
+                <h5>Unordered List Tag</h5>
+
+                My favorite books (in no particular order)
+
+                <ul id="wd-my-books">
+                    <li>Dune</li>
+                    <li>Lord of the Rings</li>
+                    <li>Ender's Game</li>
+                    <li>Red Mars</li>
+                    <li>The Forever Wars</li>
+                </ul>
+
+                Your favorites books (in no particular order)
+
+                <ul id="wd-your-books">
+                    <li>The Hobbit</li>
+                    <li>Dante's Divine Comedy</li>
+                    <li>Aristotle's Nicomachean Ethics</li>
+                </ul>
         
             </div>
 
