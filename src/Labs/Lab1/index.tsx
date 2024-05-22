@@ -197,7 +197,7 @@ export default function Lab1() {
 
                 Loading a local image:
                 <br />
-                <img id="wd-teslabot" src="images/teslabot.jpg" height="200px" />
+                <img id="wd-teslabot" src="images/logo192.jpg" height="200px" />
 
             </div>
 
@@ -228,6 +228,41 @@ export default function Lab1() {
                     <input type="text" id="wd-text-fields-last-name" placeholder="Doe" value="Wonderland" title="The last name"/>
 
                 </form>
+
+                <h5>Text boxes</h5>
+
+                <label>Biography:</label>
+
+                <br />
+
+                <textarea id="wd-textarea" cols={30} rows={10}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </textarea>
+
+                <h5 id="wd-buttons">Buttons</h5>
+
+                <button id="wd-all-good" onClick={() => alert("Life is Good!")} type="button">
+                    Hello World!
+                </button>
+
+                <h5>File upload</h5>
+                <input id="wd-upload" type="file"/>
+
+                <h5 id="wd-radio-buttons">Radio buttons</h5>
+
+                <label>Favorite movie genre:</label><br />
+
+                <input type="radio" name="radio-genre" id="wd-radio-comedy"/>
+                <label htmlFor="wd-radio-comedy">Comedy</label><br />
+
+<               input type="radio" name="radio-genre" id="wd-radio-drama"/>
+                <label htmlFor="wd-radio-drama">Drama</label><br />
+
+                <input type="radio" name="radio-genre" id="wd-radio-scifi"/>
+                <label htmlFor="wd-radio-scifi">Science Fiction</label><br />
+
+                <input type="radio" name="radio-genre" id="wd-radio-fantasy"/>
+                <label htmlFor="wd-radio-fantasy">Fantasy</label>   
 
             </div>
 
