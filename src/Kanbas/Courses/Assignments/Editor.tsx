@@ -1,5 +1,6 @@
 export default function AssignmentEditor() {
     return (
+
         <div id="wd-assignments-editor">
 
             <label htmlFor="wd-name">Assignment Name</label>
@@ -10,6 +11,7 @@ export default function AssignmentEditor() {
             <br />
 
             <table>
+                
                 <tr>
                     <td align="right" valign="top">
                     <label htmlFor="wd-points">Points</label>
