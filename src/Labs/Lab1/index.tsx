@@ -210,19 +210,13 @@ export default function Lab1() {
                     <h5>Text Fields</h5>
 
                     <label htmlFor="wd-text-fields-username">Username:</label>
-                    <input id="wd-text-fields-username" placeholder="jdoe" />
-
-                    <br />
+                    <input id="wd-text-fields-username" placeholder="jdoe" /><br />
 
                     <label htmlFor="wd-text-fields-password">Password:</label>
-                    <input type="password" id="wd-text-fields-password" value="123@#$asd" />
-
-                    <br />
+                    <input type="password" id="wd-text-fields-password" value="123@#$asd" /><br />
 
                     <label htmlFor="wd-text-fields-first-name">First name:</label>
-                    <input type="text" id="wd-text-fields-first-name" placeholder="John" />
-
-                    <br />
+                    <input type="text" id="wd-text-fields-first-name" placeholder="John" /><br />
 
                     <label htmlFor="wd-text-fields-last-name">Last name:</label>
                     <input type="text" id="wd-text-fields-last-name" placeholder="Doe" value="Wonderland" title="The last name"/>
@@ -232,8 +226,8 @@ export default function Lab1() {
 
                 <h5>Text boxes</h5>
 
-                <label>Biography:</label>
-                <br />
+                <label>Biography:</label><br />
+
                 <textarea id="wd-textarea" cols={30} rows={10}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </textarea>
@@ -251,8 +245,8 @@ export default function Lab1() {
 
                 <h5 id="wd-radio-buttons">Radio buttons</h5>
 
-                <label>Favorite movie genre:</label>
-                <br />
+                <label>Favorite movie genre:</label><br />
+                
                 <input type="radio" name="radio-genre" id="wd-radio-comedy"/>
                 <label htmlFor="wd-radio-comedy">Comedy</label><br />
 
@@ -268,8 +262,7 @@ export default function Lab1() {
 
                 <h5 id="wd-checkboxes">Checkboxes</h5>
 
-                <label>Favorite Move Genre:</label>
-                <br />
+                <label>Favorite Move Genre:</label><br />
                 <input type="checkbox" name="check-genre" id="wd-chkbox-comedy"/> 
                 <label htmlFor="wd-chkbox-comedy">Comedy</label><br />
 
@@ -285,7 +278,7 @@ export default function Lab1() {
                 <h4 id="wd-dropdowns">Dropdowns</h4>
 
                 <h5>Select One</h5>
-                <label htmlFor="wd-select-one-genre">Favorite moive genre:</label><br />
+                <label htmlFor="wd-select-one-genre">Favorite movie genre:</label><br />
                 <select id="wd-select-one-genre">
                     <option value="COMEDY">Comedy</option>
                     <option value="DRAMA">Drama</option>
