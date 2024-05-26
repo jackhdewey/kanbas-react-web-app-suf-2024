@@ -3,7 +3,9 @@ export default function AssignmentEditor() {
 
         <div id="wd-assignments-editor">
 
-            <label htmlFor="wd-name">Assignment Name</label><br />
+            <label htmlFor="wd-name">
+                <h2>Assignment Name</h2>
+            </label><br />
             <input id="wd-name" value="A1 - ENV + HTML" /><br /><br />
 
             <textarea id="wd-description" cols={30} rows={10}>
