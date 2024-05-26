@@ -54,9 +54,6 @@ export default function AssignmentEditor() {
                             <option value="ONLINE">Online</option>
                         </select>
                     </td>
-                </tr><br />
-            
-                <tr>
                     <td align="right" valign="top">
                         <label>Online Entry Options:</label><br />
                         <input type="checkbox" name="entry-options" id="wd-text-entry"/> 
