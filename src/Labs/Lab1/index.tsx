@@ -262,7 +262,7 @@ export default function Lab1() {
 
                 <h5 id="wd-checkboxes">Checkboxes</h5>
 
-                <label>Favorite Move Genre:</label><br />
+                <label>Favorite Movie Genre:</label><br />
                 <input type="checkbox" name="check-genre" id="wd-chkbox-comedy"/> 
                 <label htmlFor="wd-chkbox-comedy">Comedy</label><br />
 
