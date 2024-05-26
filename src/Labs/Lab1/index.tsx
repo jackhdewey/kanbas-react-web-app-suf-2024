@@ -275,6 +275,7 @@ export default function Lab1() {
                 <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy"/> 
                 <label htmlFor="wd-chkbox-fantasy">Fantasy</label><br />
 
+
                 <h4 id="wd-dropdowns">Dropdowns</h4>
 
                 <h5>Select One</h5>
