@@ -97,20 +97,20 @@ export default function AssignmentEditor() {
                 </tr>
 
                 <tr>
-                    <td>
+                    <td align="center">
                         Due<br/>
                         <input type="date" id="wd-due-date" value="2024-05-13" />
                     </td>
                 </tr>
 
                 <tr>
-                    <td>
+                    <td align="center">
                         Available from<br/>
                         <input type="date" id="wd-due-date" value="2024-05-13" />
                     </td>
                     <td>
                         Until<br/>
-                            <input type="date" id="wd-due-date" value="2024-05-13" />
+                        <input type="date" id="wd-due-date" value="2024-05-13" />
                     </td>
                 </tr>
                 
@@ -123,9 +123,6 @@ export default function AssignmentEditor() {
                 <button id="wd-save" type="button">
                     Save
                 </button>    
-
-
-                {/* Complete on your own */}
                 
             </table>
 
