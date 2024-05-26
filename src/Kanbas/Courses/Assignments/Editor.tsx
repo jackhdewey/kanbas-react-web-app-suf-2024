@@ -23,6 +23,39 @@ export default function AssignmentEditor() {
                         <input id="wd-points" value={100} />
                     </td>
                 </tr>
+
+                <tr>
+                    <td align="center" valign="top">
+                        <label htmlFor="wd-group">Points</label>
+                    </td>
+                    <td align="center" valign="top">
+                        <select id="wd-group">
+                            <option value="ASSIGNMENTS">ASSIGNMENTS</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="center" valign="top">
+                        <label htmlFor="wd-display-grade-as">Display Grade as</label>
+                    </td>
+                    <td align="center" valign="top">
+                        <select id="wd-display-grade-as">
+                            <option value="PERCENTAGE">Percentange</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="center" valign="top">
+                        <label htmlFor="wd-submission-type">Submission Type</label>
+                    </td>
+                    <td align="center" valign="top">
+                        <select id="wd-submission-type">
+                            <option value="ONLINE">Online</option>
+                        </select>
+                    </td>
+                </tr>
             
                 {/* Complete on your own */}
                 
