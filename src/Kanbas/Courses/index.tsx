@@ -11,7 +11,7 @@ export default function Courses() {
 
             <h2>Course 1234</h2><hr />
 
-            <table>
+            <table width="100%">
                 <tr>
                     <td valign="top">
                         <CoursesNavigation />

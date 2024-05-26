@@ -2,8 +2,6 @@ export default function Modules() {
     return (
       <div>
 
-        {/* Collapse All button, View Progress button, etc. */}
-
         <button id="wd-collapse-modules">Collapse All</button>
         <button id="wd-view-progress">View Progress</button>
         <select id="wd-publish-all">
@@ -23,6 +21,13 @@ export default function Modules() {
                   <li className="wd-content-item">Learn what is Web Development</li>
                 </ul>
               </li>
+              <li>
+                <span className="wd-title">READING</span>
+                <ul className="wd-content">
+                  <li className="wd-content-item">Full Stack Developer - Chapter 1 - Introduction</li>
+                  <li className="wd-content-item">Full Stack Developer - Chapter 2 - Creating Us</li>
+                </ul>
+              </li>
             </ul>
           </li>
 
@@ -31,6 +36,10 @@ export default function Modules() {
             <ul className="wd-lessons">
               <li className="wd-lesson">
                 <span className="wd-title">LEARNING OBJECTIVES</span>
+                <ul className="wd-content">
+                  <li className="wd-content-item">Learn how to create user interfaes with HTML</li>
+                  <li className="wd-content-item">Deploy the assignment to Netlify</li>
+                </ul>
               </li>
             </ul>
           </li>
