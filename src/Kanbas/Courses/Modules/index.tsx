@@ -2,11 +2,11 @@ export default function Modules() {
     return (
       <div>
 
-        <button id="wd-collapse-modules">Collapse All</button>
-        <button id="wd-view-progress">View Progress</button>
+        <button id="wd-collapse-modules">Collapse All</button> 
+        <button id="wd-view-progress">View Progress</button> 
         <select id="wd-publish-all">
           <option value="ALL">Publish All</option>
-        </select>
+        </select> 
         <button id="wd-add-module">+ Module</button>
         
         <ul id="wd-modules">
