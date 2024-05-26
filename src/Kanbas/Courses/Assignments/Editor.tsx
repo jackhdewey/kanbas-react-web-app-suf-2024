@@ -26,7 +26,7 @@ export default function AssignmentEditor() {
 
                 <tr>
                     <td align="center" valign="top">
-                        <label htmlFor="wd-group">Points</label>
+                        <label htmlFor="wd-group">Assignment Group</label>
                     </td>
                     <td>
                         <select id="wd-group">
@@ -79,13 +79,51 @@ export default function AssignmentEditor() {
 
                 <tr>
                     <td align="center" valign="top">
-                        <label htmlFor="wd-assign-to">Submission Type</label>
+                        <label htmlFor="wd-assign-to">Assign To</label>
                     </td>
                     <td>
                         <input id="wd-assign-to" value="Everyone" />
                     </td>
                 </tr>
+
+                <tr>
+                    <td align="center" valign="top">
+                        <label htmlFor="wd-due-date">Assign To</label>
+                    </td>
+                    <td>
+                        Assign to<br/>
+                        <input type="date" id="wd-due-date" value="2024-05-13" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Due<br/>
+                        <input type="date" id="wd-due-date" value="2024-05-13" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Available from<br/>
+                        <input type="date" id="wd-due-date" value="2024-05-13" />
+                    </td>
+                    <td>
+                        Until<br/>
+                            <input type="date" id="wd-due-date" value="2024-05-13" />
+                    </td>
+                </tr>
                 
+                <hr />
+
+                <button id="wd-cancel" type="button">
+                    Cancel
+                </button>
+
+                <button id="wd-save" type="button">
+                    Save
+                </button>    
+
 
                 {/* Complete on your own */}
                 
