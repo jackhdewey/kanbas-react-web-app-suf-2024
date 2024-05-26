@@ -78,9 +78,10 @@ export default function AssignmentEditor() {
 
                 <tr>
                     <td align="right" valign="top">
-                        <label htmlFor="wd-assign-to">Assign To</label>
+                        <label htmlFor="wd-assign-to">Assign</label>
                     </td>
                     <td>
+                        Assign to<br/>
                         <input id="wd-assign-to" value="Everyone" />
                     </td>
                 </tr><br />
@@ -90,14 +91,7 @@ export default function AssignmentEditor() {
                         <label htmlFor="wd-due-date">Assign</label>
                     </td>
                     <td>
-                        Assign to<br/>
-                        <input type="date" id="wd-due-date" value="2024-05-13" />
-                    </td>
-                </tr><br />
-
-                <tr>
-                    <td align="right" valign="top">
-                        Due<br/>
+                        Due<br />
                         <input type="date" id="wd-due-date" value="2024-05-13" />
                     </td>
                 </tr><br />
@@ -105,11 +99,11 @@ export default function AssignmentEditor() {
                 <tr>
                     <td align="right" valign="top">
                         Available from<br/>
-                        <input type="date" id="wd-due-date" value="2024-05-13" />
+                        <input type="date" id="wd-available-from" value="2024-05-13" />
                     </td>
                     <td>
                         Until<br/>
-                        <input type="date" id="wd-due-date" value="2024-05-13" />
+                        <input type="date" id="wd-availaible-until" value="2024-05-13" />
                     </td>
                 </tr><br />
                 
