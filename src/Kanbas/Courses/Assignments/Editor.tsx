@@ -19,7 +19,7 @@ export default function AssignmentEditor() {
                     <td align="center" valign="top">
                         <label htmlFor="wd-points">Points</label>
                     </td>
-                    <td align="center" valign="top">
+                    <td>
                         <input id="wd-points" value={100} />
                     </td>
                 </tr>
@@ -28,7 +28,7 @@ export default function AssignmentEditor() {
                     <td align="center" valign="top">
                         <label htmlFor="wd-group">Points</label>
                     </td>
-                    <td align="center" valign="top">
+                    <td>
                         <select id="wd-group">
                             <option value="ASSIGNMENTS">ASSIGNMENTS</option>
                         </select>
@@ -39,7 +39,7 @@ export default function AssignmentEditor() {
                     <td align="center" valign="top">
                         <label htmlFor="wd-display-grade-as">Display Grade as</label>
                     </td>
-                    <td align="center" valign="top">
+                    <td>
                         <select id="wd-display-grade-as">
                             <option value="PERCENTAGE">Percentange</option>
                         </select>
@@ -50,13 +50,29 @@ export default function AssignmentEditor() {
                     <td align="center" valign="top">
                         <label htmlFor="wd-submission-type">Submission Type</label>
                     </td>
-                    <td align="center" valign="top">
+                    <td>
                         <select id="wd-submission-type">
                             <option value="ONLINE">Online</option>
                         </select>
                     </td>
                 </tr>
             
+                <label>Online Entry Options:</label><br />
+                <input type="checkbox" name="entry-options" id="wd-text-entry"/> 
+                <label htmlFor="wd-text-entry">Text Entry</label><br />
+
+                <input type="checkbox" name="entry-options" id="wd-website-url"/> 
+                <label htmlFor="wd-website-url">Website URL</label><br />
+
+                <input type="checkbox" name="entry-options" id="wd-media-recordings"/> 
+                <label htmlFor="wd-media-recordings">Media Recordings</label><br />
+
+                <input type="checkbox" name="entry-options" id="wd-student-annotation"/> 
+                <label htmlFor="wd-student-annotation">Student Annotation</label><br />
+
+                <input type="checkbox" name="entry-options" id="wd-file-upload"/> 
+                <label htmlFor="wd-file-upload">File Uploads</label><br />
+
                 {/* Complete on your own */}
                 
             </table>
