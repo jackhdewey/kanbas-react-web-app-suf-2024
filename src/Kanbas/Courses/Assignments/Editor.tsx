@@ -76,6 +76,15 @@ export default function AssignmentEditor() {
                         <label htmlFor="wd-file-upload">File Uploads</label><br />
                     </td>
                 </tr>
+
+                <tr>
+                    <td align="center" valign="top">
+                        <label htmlFor="wd-assign-to">Submission Type</label>
+                    </td>
+                    <td>
+                        <input id="wd-assign-to" value="Everyone" />
+                    </td>
+                </tr>
                 
 
                 {/* Complete on your own */}
