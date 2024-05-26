@@ -16,7 +16,7 @@ export default function AssignmentEditor() {
             <table>
                 
                 <tr>
-                    <td align="center" valign="top">
+                    <td align="right" valign="top">
                         <label htmlFor="wd-points">Points</label>
                     </td>
                     <td>
@@ -57,21 +57,26 @@ export default function AssignmentEditor() {
                     </td>
                 </tr>
             
-                <label>Online Entry Options:</label><br />
-                <input type="checkbox" name="entry-options" id="wd-text-entry"/> 
-                <label htmlFor="wd-text-entry">Text Entry</label><br />
+                <tr>
+                    <td align="center" valign="top">
+                        <label>Online Entry Options:</label><br />
+                        <input type="checkbox" name="entry-options" id="wd-text-entry"/> 
+                        <label htmlFor="wd-text-entry">Text Entry</label><br />
 
-                <input type="checkbox" name="entry-options" id="wd-website-url"/> 
-                <label htmlFor="wd-website-url">Website URL</label><br />
+                        <input type="checkbox" name="entry-options" id="wd-website-url"/> 
+                        <label htmlFor="wd-website-url">Website URL</label><br />
 
-                <input type="checkbox" name="entry-options" id="wd-media-recordings"/> 
-                <label htmlFor="wd-media-recordings">Media Recordings</label><br />
+                        <input type="checkbox" name="entry-options" id="wd-media-recordings"/> 
+                        <label htmlFor="wd-media-recordings">Media Recordings</label><br />
 
-                <input type="checkbox" name="entry-options" id="wd-student-annotation"/> 
-                <label htmlFor="wd-student-annotation">Student Annotation</label><br />
+                        <input type="checkbox" name="entry-options" id="wd-student-annotation"/> 
+                        <label htmlFor="wd-student-annotation">Student Annotation</label><br />
 
-                <input type="checkbox" name="entry-options" id="wd-file-upload"/> 
-                <label htmlFor="wd-file-upload">File Uploads</label><br />
+                        <input type="checkbox" name="entry-options" id="wd-file-upload"/> 
+                        <label htmlFor="wd-file-upload">File Uploads</label><br />
+                    </td>
+                </tr>
+                
 
                 {/* Complete on your own */}
                 
