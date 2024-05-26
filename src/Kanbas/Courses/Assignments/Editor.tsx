@@ -52,7 +52,7 @@ export default function AssignmentEditor() {
                     <td>
                         <select id="wd-submission-type">
                             <option value="ONLINE">Online</option>
-                        </select>
+                        </select><br />
                 
                         <label>Online Entry Options:</label><br />
                         <input type="checkbox" name="entry-options" id="wd-text-entry"/> 
@@ -94,11 +94,11 @@ export default function AssignmentEditor() {
                     <td align="right" valign="top"></td>
                     <td>
                         Available from<br/>
-                        <input type="date" id="wd-available-from" value="2024-05-13" />
+                        <input type="date" id="wd-available-from" value="2024-05-06" />
                     </td>
                     <td>
                         Until<br/>
-                        <input type="date" id="wd-availaible-until" value="2024-05-13" />
+                        <input type="date" id="wd-availaible-until" value="2024-05-20" />
                     </td>
                 </tr><br />
                 
