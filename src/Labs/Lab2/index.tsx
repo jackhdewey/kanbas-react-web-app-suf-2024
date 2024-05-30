@@ -1,5 +1,6 @@
 //import React from "react";
 import StyleAttribute from "./StyleAttribute";
+import "./index.css";
 
 export default function Lab2() {
     return (
