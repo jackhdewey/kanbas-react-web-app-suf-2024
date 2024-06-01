@@ -2,6 +2,7 @@
 import ClassSelectors from "./ClassSelectors";
 import StyleAttribute from "./StyleAttribute";
 import IdSelector from "./idSelector";
+import DocumentStructureStyle from "./DocumentStructureStyle";
 import "./index.css";
 
 export default function Lab2() {
@@ -11,6 +12,7 @@ export default function Lab2() {
         <StyleAttribute />
         <IdSelector />
         <ClassSelectors />
+        <DocumentStructureStyle />
       </div>
     );
 }
