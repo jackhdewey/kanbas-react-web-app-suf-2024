@@ -3,8 +3,12 @@ import ClassSelectors from "./ClassSelectors";
 import StyleAttribute from "./StyleAttribute";
 import IdSelector from "./idSelector";
 import DocumentStructureStyle from "./DocumentStructureStyle";
-import "./index.css";
 import ForegroundColor from "./ForegroundColor";
+import Padding from "./Padding";
+import Margins from "./Margins";
+import Corners from "./Corners";
+import Dimensions from "./Dimensions";
+import "./index.css";
 
 export default function Lab2() {
     return (
@@ -15,6 +19,10 @@ export default function Lab2() {
         <ClassSelectors />
         <DocumentStructureStyle />
         <ForegroundColor />
+        <Padding />
+        <Margins /> 
+        <Corners />
+        <Dimensions />
       </div>
     );
 }

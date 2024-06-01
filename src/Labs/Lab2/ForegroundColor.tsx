@@ -8,6 +8,5 @@ export default function ForegroundColor() {
                 <span className="wd-fg-color-green">this text is green</span>
             </p>
         </div>
-        
     );
 }

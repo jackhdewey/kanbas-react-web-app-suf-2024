@@ -5,26 +5,6 @@ p {
 }
 */
 
-.wd-fg-color-black {
-    color: black;
-}
-
-.wd-fg-color-white {
-    color: white;
-}
-
-.wd-fg-color-blue {
-    color: #7070ff;
-}
-
-.wd-fg-color-red {
-    color: #ff7070;
-}
-
-.wd-fg-color-green {
-    color: green;
-}
-
 p#wd-id-selector-1 {
     background-color: red;
     color: white;
@@ -48,4 +28,95 @@ p#wd-id-selector-2 {
 .wd-selector-2 > .wd-selector-3 > .wd-selector-4 {
     background-color: yellow;
     color: blue;
+}
+
+.wd-fg-color-black {
+    color: black;
+}
+
+.wd-fg-color-white {
+    color: white;
+}
+
+.wd-fg-color-blue {
+    color: #7070ff;
+}
+
+.wd-fg-color-red {
+    color: #ff7070;
+}
+
+.wd-fg-color-green {
+    color: green;
+}
+
+.wd-padded-bottom-right {
+    padding-bottom: 50px;
+    padding-right: 50px;
+}
+
+.wd-padding-fat {
+    padding: 50px;
+}
+
+.wd-margin-bottom {
+    margin-bottom: 50px;
+}
+
+.wd-margin-right-left {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.wd-margin-all-around {
+    margin: 30px;
+}
+
+.wd-rounded-corners-top {
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+.wd-rounded-corners-bottom {
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
+
+.wd-rounded-cornders-all-around {
+    border-radius: 50px;
+}
+
+.wd-rounded-corners-inline {
+    border-radius: 30px 0px 20px 50px;
+}
+
+.wd-dimension-portrait {
+    width: 75px;
+    height: 100px;
+}
+
+.wd-dimension-landscape {
+    width: 100px;
+    height: 75px;
+}
+
+.wd-dimension-square {
+    width: 75px;
+    height: 75px;
+}
+
+.wd-pos-relative-nudge-up-right {
+    position: relative;
+    bottom: 30px;
+    left: 30px;
+}
+
+.wd-pos-relative-nudge-down-right {
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+
+.wd-pos-relative {
+    position: relative;
 }
