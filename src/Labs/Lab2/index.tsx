@@ -4,6 +4,7 @@ import StyleAttribute from "./StyleAttribute";
 import IdSelector from "./idSelector";
 import DocumentStructureStyle from "./DocumentStructureStyle";
 import "./index.css";
+import ForegroundColor from "./ForegroundColor";
 
 export default function Lab2() {
     return (
@@ -13,6 +14,7 @@ export default function Lab2() {
         <IdSelector />
         <ClassSelectors />
         <DocumentStructureStyle />
+        <ForegroundColor />
       </div>
     );
 }
