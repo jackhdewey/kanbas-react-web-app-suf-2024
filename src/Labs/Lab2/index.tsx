@@ -1,13 +1,19 @@
 //import React from "react";
 import ClassSelectors from "./ClassSelectors";
 import StyleAttribute from "./StyleAttribute";
-import IdSelector from "./idSelector";
+import IdSelector from "./IdSelector";
 import DocumentStructureStyle from "./DocumentStructureStyle";
 import ForegroundColor from "./ForegroundColor";
 import Padding from "./Padding";
 import Margins from "./Margins";
 import Corners from "./Corners";
 import Dimensions from "./Dimensions";
+import RelativePosition from "./RelativePosition";
+import AbsolutePosition from "./AbsolutePosition";
+import FixedPosition from "./FixedPosition";
+import ZIndex from "./ZIndex";
+import FloatImages from "./FloatImages";
+import FloatDivs from "./FloatDivs";
 import "./index.css";
 
 export default function Lab2() {
@@ -23,6 +29,12 @@ export default function Lab2() {
         <Margins /> 
         <Corners />
         <Dimensions />
+        <RelativePosition />
+        <AbsolutePosition />
+        <FixedPosition />
+        <ZIndex />
+        <FloatImages />
+        <FloatDivs />
       </div>
     );
 }

@@ -6,6 +6,5 @@ export default function Corners() {
                 Rounded corners at the top
             </p>
         </div>
-
     );
 }
