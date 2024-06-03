@@ -17,6 +17,10 @@ import FloatDivs from "./FloatDivs";
 import GridLayout from "./GridLayout";
 import Flex from "./Flex";
 import ReactIconsSampler from "./ReactIconsSampler";
+import GridSystem from "./GridSystem";
+import ResponsiveGrids from "./ResponsiveGrids";
+import DramaticResponsiveGrids from "./DramaticResponsiveGrids";
+import ResponsiveTables from "./ResponsiveTables";
 import "./index.css";
 
 export default function Lab2() {
@@ -38,6 +42,13 @@ export default function Lab2() {
         <ZIndex />
         <FloatImages />
         <FloatDivs />
+        <GridLayout />
+        <Flex />
+        <ReactIconsSampler />
+        <GridSystem />
+        <ResponsiveGrids />
+        <DramaticResponsiveGrids />
+        <ResponsiveTables />
       </div>
     );
 }

@@ -1,6 +1,34 @@
 export default function GridSystem() {
     return (
-        <div>
+        <div id="wd-bs-grid-system">
+            <h2>Grid System</h2>
+            <div className="row">
+                <div className="col bg-danger text-white">
+                    <h3>Left half</h3>
+                </div>
+                <div className="col bg-primary text-white">
+                    <h3>Right half</h3> 
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-4 bg-warning">
+                    <h3>Left half</h3>
+                </div>
+                <div className="col-8 bg-success text-white">
+                    <h3>Right half</h3> 
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-2 bg-dark text-white">
+                    <h3>Sidebar</h3>
+                </div>
+                <div className="col-8 bg-secondary text-white">
+                    <h3>Content</h3> 
+                </div>
+                <div className="col-2 bg-info">
+                    <h3>Sidebar</h3> 
+                </div>
+            </div>
             
         </div>
     );
