@@ -14,11 +14,14 @@ import FixedPosition from "./FixedPosition";
 import ZIndex from "./ZIndex";
 import FloatImages from "./FloatImages";
 import FloatDivs from "./FloatDivs";
+import GridLayout from "./GridLayout";
+import Flex from "./Flex";
+import ReactIconsSampler from "./ReactIconsSampler";
 import "./index.css";
 
 export default function Lab2() {
     return (
-      <div id="wd-lab2">
+      <div id="wd-lab2" className="container">
         <h2>Lab 2 - Cascading Style Sheets</h2>
         <StyleAttribute />
         <IdSelector />

@@ -1,4 +1,4 @@
-export default function GridLayout() {
+export default function ResponsiveGrids() {
     return (
         <div>
 

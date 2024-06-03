@@ -1,4 +1,4 @@
-export default function GridLayout() {
+export default function ReactIconsSampler() {
     return (
         <div>
 
