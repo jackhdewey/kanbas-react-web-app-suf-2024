@@ -223,6 +223,8 @@ export default function Lab1() {
 
                 </form>
 
+                <label><input type="checkbox" name="radio"/>DSA</label>
+
 
                 <h5>Text boxes</h5>
 

@@ -1,54 +1,38 @@
-//import React from "react";
-import ClassSelectors from "./ClassSelectors";
+import "./index.css";
 import StyleAttribute from "./StyleAttribute";
-import IdSelector from "./IdSelector";
-import DocumentStructureStyle from "./DocumentStructureStyle";
-import ForegroundColor from "./ForegroundColor";
-import Padding from "./Padding";
-import Margins from "./Margins";
-import Corners from "./Corners";
-import Dimensions from "./Dimensions";
-import RelativePosition from "./RelativePosition";
-import AbsolutePosition from "./AbsolutePosition";
-import FixedPosition from "./FixedPosition";
-import ZIndex from "./ZIndex";
-import FloatImages from "./FloatImages";
-import FloatDivs from "./FloatDivs";
+import Selectors from "./Selectors";
+import Colors from "./Colors";
+import BoxModel from "./BoxModel";
+import Positions from "./Positions";
 import GridLayout from "./GridLayout";
-import Flex from "./Flex";
 import ReactIconsSampler from "./ReactIconsSampler";
 import GridSystem from "./GridSystem";
-import ResponsiveGrids from "./ResponsiveGrids";
-import DramaticResponsiveGrids from "./DramaticResponsiveGrids";
-import ResponsiveTables from "./ResponsiveTables";
-import "./index.css";
+import ScreenSizeLabel from "./ScreenSizeLabel";
+import Tables from "./ResponsiveTables";
+import StylingLists from "./StylingLists";
+import StylingForms from "./StylingForms";
+import Tabs from "./Tabs";
 
 export default function Lab2() {
     return (
       <div id="wd-lab2" className="container">
+
         <h2>Lab 2 - Cascading Style Sheets</h2>
+
         <StyleAttribute />
-        <IdSelector />
-        <ClassSelectors />
-        <DocumentStructureStyle />
-        <ForegroundColor />
-        <Padding />
-        <Margins /> 
-        <Corners />
-        <Dimensions />
-        <RelativePosition />
-        <AbsolutePosition />
-        <FixedPosition />
-        <ZIndex />
-        <FloatImages />
-        <FloatDivs />
+        <Selectors />
+        <Colors />
+        <BoxModel />
+        <Positions />
         <GridLayout />
-        <Flex />
         <ReactIconsSampler />
         <GridSystem />
-        <ResponsiveGrids />
-        <DramaticResponsiveGrids />
-        <ResponsiveTables />
+        <ScreenSizeLabel />
+        <Tables />
+        <StylingLists />
+        <StylingForms />
+        <Tabs />
+
       </div>
     );
 }

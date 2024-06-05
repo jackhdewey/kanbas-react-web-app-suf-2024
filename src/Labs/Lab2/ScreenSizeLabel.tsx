@@ -1,25 +1,24 @@
 export default function ScreenSizeLabel() {
     return (
-        <div id="wd-scrren-size-label" className="position-fixed top-0 left-0 bg-black text-white p-2 fa-2x">
-            <div className="d-black d-sm-none fa-2x">
-                XS - Extra Small (&lt;576px)
+        <div id="wd-screen-size-label">
+            <div className="d-block d-sm-none">
+            XS - Extra Small (&lt;576px)
             </div>
-            <div className="d-black d-sm-none fa-2x">
-                S - Small (&lt;576px)
+            <div className="d-none d-sm-block d-md-none">
+            S - Small (≥576px)
             </div>
-            <div className="d-black d-sm-none fa-2x">
-                M - Medium (&lt;576px)
+            <div className="d-none d-md-block d-lg-none">
+            M - Medium (≥768px)
             </div>
-            <div className="d-black d-sm-none fa-2x">
-                L - Large (&lt;576px)
+            <div className="d-none d-lg-block d-xl-none">
+            L - Large (≥992px)
             </div>
-            <div className="d-black d-sm-none fa-2x">
-                XL - Extra Large (&lt;576px)
+            <div className="d-none d-xl-block d-xxl-none">
+            XL - Extra Large (≥1200px)
             </div>
-            <div className="d-black d-sm-none fa-2x">
-                XXL - Extra Extra Large (1400px)
+            <div className="d-none d-xxl-block">
+            XXL - Extra Extra Large (≥1400px)
             </div>
-
         </div>
     );
 }
