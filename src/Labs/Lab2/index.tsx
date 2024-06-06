@@ -12,6 +12,7 @@ import Tables from "./ResponsiveTables";
 import StylingLists from "./StylingLists";
 import StylingForms from "./StylingForms";
 import Tabs from "./Tabs";
+import Cards from "./Cards";
 
 export default function Lab2() {
     return (
@@ -32,6 +33,7 @@ export default function Lab2() {
         <StylingLists />
         <StylingForms />
         <Tabs />
+        <Cards />
 
       </div>
     );

@@ -35,6 +35,8 @@ export default function StylingLists() {
                 </div>
             </div>
 
+            <br />
+
         </div>
         
     );

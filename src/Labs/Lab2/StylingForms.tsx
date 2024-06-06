@@ -165,9 +165,11 @@ export default function StylingForms() {
                     </div>
 
                     <button type="submit" className="btn btn-primary">Sign in </button>
-                    
+
                 </form>
             </div>
+
+            <br />
 
         </div>
     );

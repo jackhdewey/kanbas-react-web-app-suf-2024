@@ -16,6 +16,7 @@ export default function Tabs() {
                     <a className="nav-link disabled" href="#">Disabled</a>
                 </li>
             </ul>
+            <br />
         </div>
     );
 }
