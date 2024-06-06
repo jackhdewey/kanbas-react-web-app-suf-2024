@@ -6,7 +6,7 @@ import { BsHouseDoorFill, BsBarChartFill, BsBellFill, BsMegaphoneFill } from "re
 
 export default function CourseStatus() {
     return (
-      <div id="wd-course-status" style={{ width: "300px" }}>
+      <div id="wd-course-status" style={{ width: "350px" }}>
 
           <h2>Course Status</h2>
 
