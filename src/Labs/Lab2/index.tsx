@@ -1,4 +1,3 @@
-import "./index.css";
 import StyleAttribute from "./StyleAttribute";
 import Selectors from "./Selectors";
 import Colors from "./Colors";
@@ -13,6 +12,7 @@ import StylingLists from "./StylingLists";
 import StylingForms from "./StylingForms";
 import Tabs from "./Tabs";
 import Cards from "./Cards";
+import "./index.css";
 
 export default function Lab2() {
     return (
