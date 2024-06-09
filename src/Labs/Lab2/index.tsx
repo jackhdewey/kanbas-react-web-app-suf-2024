@@ -8,7 +8,7 @@ import GridLayout from "./GridLayout";
 import ReactIconsSampler from "./ReactIconsSampler";
 import GridSystem from "./GridSystem";
 import ScreenSizeLabel from "./ScreenSizeLabel";
-import Tables from "./ResponsiveTables";
+import Tables from "./Tables";
 import StylingLists from "./StylingLists";
 import StylingForms from "./StylingForms";
 import Tabs from "./Tabs";
