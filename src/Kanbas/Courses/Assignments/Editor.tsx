@@ -3,9 +3,7 @@ export default function AssignmentEditor() {
 
         <div id="wd-assignments-editor">
 
-            <label htmlFor="wd-name" className="form-label">
-                <h3>Assignment Name</h3>
-            </label>
+            <label htmlFor="wd-name" className="form-label"><h3>Assignment Name</h3></label>
             <input id="wd-name" className="form-control" value="A1 - ENV + HTML" /><br /><br />
 
             <textarea id="wd-description" className="form-control" cols={50} rows={9}>
@@ -20,18 +18,18 @@ export default function AssignmentEditor() {
                 </div>
                 
                 <div className="col">
-                    <input id="wd-points" value={100} />
+                    <input id="wd-points" className="form-control" value={100} />
                 </div>
     
             </div><br />
 
             <div className="row">
                 <div className="col">
-                    <label htmlFor="wd-group">Assignment Group</label>
+                    <label htmlFor="wd-group form-label">Assignment Group</label>
                 </div>
                 
                 <div className="col">
-                    <select id="wd-group">
+                    <select id="wd-group ">
                         <option value="ASSIGNMENTS">ASSIGNMENTS</option>
                     </select>
                 </div>
@@ -40,7 +38,7 @@ export default function AssignmentEditor() {
             <div className="row">
                
                 <div className="col">
-                    <label htmlFor="wd-display-grade-as">Display Grade as</label>
+                    <label htmlFor="wd-display-grade-as" className="form-label">Display Grade as</label>
                 </div>
         
                 <div className="col">
@@ -53,70 +51,73 @@ export default function AssignmentEditor() {
 
             <div className="row">
 
-                <div>
-                    <label htmlFor="wd-submission-type">Submission Type</label>
+                <div className="col">
+                    <label htmlFor="wd-submission-type" className="form-label">Submission Type</label>
                 </div>
 
-                <div>
+                <div className="col">
                     <select id="wd-submission-type">
                         <option value="ONLINE">Online</option>
                     </select><br />
                 </div>
                    
-                <div>
-                    <label>Online Entry Options:</label><br />
-                    <input type="checkbox" name="entry-options" id="wd-text-entry"/> 
-                    <label htmlFor="wd-text-entry">Text Entry</label><br />
+                <div className="col">
+                    <label className="form-label">Online Entry Options:</label><br />
+                    <input type="checkbox" name="entry-options" id="wd-text-entry" className="form-control"/> 
+                    <label htmlFor="wd-text-entry" className="form-label">Text Entry</label><br />
                 </div>
-                
-                    <input type="checkbox" name="entry-options" id="wd-website-url"/> 
-                    <label htmlFor="wd-website-url">Website URL</label><br />
 
-                    <input type="checkbox" name="entry-options" id="wd-media-recordings"/> 
-                    <label htmlFor="wd-media-recordings">Media Recordings</label><br />
+                <input type="checkbox" name="entry-options" id="wd-website-url" className="form-control"/> 
+                <label htmlFor="wd-website-url" className="form-label">Website URL</label><br />
 
-                    <input type="checkbox" name="entry-options" id="wd-student-annotation"/> 
-                    <label htmlFor="wd-student-annotation">Student Annotation</label><br />
+                <input type="checkbox" name="entry-options" id="wd-media-recordings" className="form-control"/> 
+                <label htmlFor="wd-media-recordings" className="form-label">Media Recordings</label><br />
 
-                    <input type="checkbox" name="entry-options" id="wd-file-upload"/> 
-                    <label htmlFor="wd-file-upload">File Uploads</label><br />
+                <input type="checkbox" name="entry-options" id="wd-student-annotation" className="form-control"/> 
+                <label htmlFor="wd-student-annotation" className="form-label">Student Annotation</label><br />
+
+                <input type="checkbox" name="entry-options" id="wd-file-upload" className="form-control"/> 
+                <label htmlFor="wd-file-upload" className="form-label">File Uploads</label><br />
           
-                </div><br />
+            </div><br />
 
-                <div className="row">
+            <div className="row">
            
-                    <label htmlFor="wd-assign-to">Assign</label>
+                    <label htmlFor="wd-assign-to" className="form-label">Assign</label>
                     Assign to<br/>
-                    <input id="wd-assign-to" value="Everyone" />
-                </div><br />
+                    <input id="wd-assign-to" className="form-control" value="Everyone" />
 
-                <div className="row">
+            </div><br />
+
+            <div className="row">
         
                     Due<br />
-                    <input type="date" id="wd-due-date" value="2024-05-13" />
+                    <input type="date" id="wd-due-date" className="form-control" value="2024-05-13" />
         
-                </div><br />
+            </div><br />
 
-                <div className="row">
+            <div className="row">
             
                     Available from<br/>
-                    <input type="date" id="wd-available-from" value="2024-05-06" />
+                    <input type="date" id="wd-available-from" className="form-control" value="2024-05-06" />
           
                     Until<br/>
-                    <input type="date" id="wd-availaible-until" value="2024-05-20" />
+                    <input type="date" id="wd-availaible-until" className="form-control" value="2024-05-20" />
     
-                </div><br />
+            </div><br />
                 
             <hr />
 
             <div>
-                <button id="wd-cancel" type="button">
-                    Cancel
-                </button>
 
-                <button id="wd-save" type="button">
+                <button id="wd-save" type="button" className="btn btn-danger float-end">
                     Save
                 </button>  
+
+                <button type="button" id="wd-cancel" className="btn btn-secondary float-end" >
+                    Cancel
+                </button>
+                
             </div>
              
 
