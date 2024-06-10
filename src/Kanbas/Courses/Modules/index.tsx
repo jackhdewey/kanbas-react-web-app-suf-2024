@@ -2,6 +2,7 @@ import { BsGripVertical } from "react-icons/bs";
 import ModuleControls from "./ModuleControls";
 import ModuleControlButtons from "./ModuleControlButtons";
 import LessonControlButtons from "./LessonControlButtons";
+import "./index.css"
 
 export default function Modules() {
     return (
@@ -21,7 +22,7 @@ export default function Modules() {
 
             <ul className="wd-lessons list-group rounded-0">
 
-              <li className="wd-lesson list-group-item p-3 ps-1">
+              <li className="wd-lesson list-group-item p-3 ps-1 border-0 border-start border-success">
                   <BsGripVertical className="me-2 fs-3" />
                   LEARNING OBJECTIVES
                   <LessonControlButtons />
