@@ -1,39 +1,43 @@
+import { BsGearFill } from "react-icons/bs"
+import { FaFileImport, FaFileExport } from "react-icons/fa6"
 import { CiSearch } from "react-icons/ci";
 import { FiFilter } from "react-icons/fi";
 
 export default function GradeControls() {
     return (
-        <div id="wd-assignment-controls" className="text-nowrap">
+        <div id="wd-grade-controls" className="text-nowrap">
 
-            <button id="wd-add-assignment-group" className="btn btn-lg btn-secondary me-1 float-end">
-                <FiFilter className="position-relative me-2" style={{ bottom: "1px" }} />
+            <button id="wd-grade-settings" className="btn btn-lg btn-secondary btn-outline me-1 float-end">
+                <BsGearFill className="position-relative" style={{ bottom: "1px" }} />
             </button> 
 
-            <button id="wd-add-assignment" className="btn btn-lg btn-danger me-1 float-end">
-                <FiFilter className="position-relative me-2" style={{ bottom: "1px" }} />
-                Assignment
+            <div className="dropdown">
+                <button id="wd-grade-export" className="dropdown-toggle btn btn-lg btn-secondary btn-outline me-1 float-end">
+                    <FaFileExport className="position-relative me-2" style={{ bottom: "1px" }} />
+                    Export
+                </button> 
+            </div>
+
+            <button id="wd-grade-import" className="btn btn-lg btn-secondary btn-outline me-1 float-end">
+                <FaFileImport className="position-relative me-2" style={{ bottom: "1px" }} />
+                Import
             </button>
-      
-            <button id="wd-add-assignment-group" className="btn btn-lg btn-secondary me-1 float-end">
-                <FiFilter className="position-relative me-2" style={{ bottom: "1px" }} />
-                Group
-            </button> 
 
-            <br/> <br/> <br />
-     
+            <br/> <br/>
+
 
             <div className="row">
-                <div className="col">
+                <div className="col-6">
                     <label htmlFor="wd-search-students" className="form-label">Student Names</label>
-                    <CiSearch className="position-absolute" style={{top: "300px", left: "350px", width: "40px"}}/>
-                    <input id="wd-search-students" type="text" className="form-control me-1" style={{height: "65px", width: "400px"}} placeholder="    Search...">
+                    <CiSearch className="position-absolute" style={{top: "275px", left: "350px", width: "40px"}}/>
+                    <input id="wd-search-students" type="text" className="form-control me-1" style={{height: "65px"}} placeholder="    Search...">
                     </input>
                 </div>
 
-                <div className="col">
+                <div className="col-6">
                     <label htmlFor="wd-search-assignments" className="form-label">Assignment Names</label>
-                    <CiSearch className="position-absolute" style={{top: "300px", left: "1100px", width: "40px"}}/>
-                    <input id="wd-search-assignments" type="text" className="form-control me-1" style={{height: "65px", width: "400px"}} placeholder="    Search...">
+                    <CiSearch className="position-absolute" style={{top: "275px", left: "1100px", width: "40px"}}/>
+                    <input id="wd-search-assignments" type="text" className="form-control me-1" style={{height: "65px"}} placeholder="    Search...">
                     </input>
                 </div>
 
@@ -41,7 +45,7 @@ export default function GradeControls() {
 
             <br />
             
-            <button id="wd-add-assignment-group" className="btn btn-lg btn-secondary me-1 float-start">
+            <button id="wd-apply-filters" className="btn btn-lg btn-secondary btn-outline me-1 float-start">
                 <FiFilter className="position-relative me-2" style={{ bottom: "1px" }} />
                 Apply Filters
             </button>
