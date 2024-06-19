@@ -1,3 +1,5 @@
+import { useParams } from "react-router";
+import * as db from "../../Database";
 import { FaRegEdit } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
 import AssignmentControls from "./AssignmentControls";
@@ -6,6 +8,9 @@ import LessonControlButtons from "../Modules/LessonControlButtons";
 import "./index.css"
 
 export default function Assignments() {
+    const { cid } = useParams();
+    const assignments = db.assignments;
+
     return (
         <div id="wd-assignments">
 
