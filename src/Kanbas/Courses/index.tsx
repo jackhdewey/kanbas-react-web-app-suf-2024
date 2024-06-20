@@ -12,7 +12,6 @@ import { courses } from "../Database";
 export default function Courses() {
     const { pathname } = useLocation()
     const { cid } = useParams();
-    console.log(cid);
     const course = courses.find((course) => course._id === cid);
 
     return (
