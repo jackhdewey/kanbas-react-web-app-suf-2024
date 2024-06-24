@@ -1,6 +1,20 @@
+import { useParams } from "react-router-dom";
 import GradeControls from "./GradeControls";
+import * as db from "../../Database";
 
 export default function Grades() {
+    const { cid } = useParams();
+    const assignments = db.assignments;
+
+    const enrollments = db.enrollments;
+    const students = enrollments.filter((enrollment) => enrollment.course === cid);
+    const student_ids = students.map((student) => student.user)
+
+    const users = db.users;
+    const enrolled_students = users.filter((user) => student_ids.includes(user._id));
+
+    const grades = db.grades;
+
     return (
         <div>
 
@@ -13,40 +27,19 @@ export default function Grades() {
                     <thead>
                         <tr className="table-secondary text-center">
                             <th>Student Name</th>
-                            <th>A1 SETUP</th>
-                            <th>A2 HTML</th>
-                            <th>A3 CSS</th>
-                            <th>A4 BOOTSTRAP</th>
+                            {
+                                assignments.map((assignment) => <th>{assignment._id}</th>)
+                            }
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr className="table text-center">
-                            <td><span className="text-danger">Jane Adams</span></td>
-                            <td><input type="number" className="form-conrol" value="100" min="0" max="100" placeholder="100"></input></td>
-                            <td>100%</td>
-                            <td>100%</td>
-                            <td>100%</td>
-                        </tr>
-                        <tr className="table text-center">
-                            <td><span className="text-danger">Christina Allen</span></td>
-                            <td>100%</td>
-                            <td>100%</td>
-                            <td>100%</td>
-                            <td>100%</td>
-                        </tr>
-                        <tr className="table text-center">
-                            <td><span className="text-danger">Samreen Ansari</span></td><td>100%</td><td>100%</td><td>100%</td><td>100%</td>
-                        </tr>
-                        <tr className="table text-center">
-                            <td><span className="text-danger">Han Bao</span></td><td>100%</td><td>100%</td><td>100%</td><td>100%</td>
-                        </tr>
-                        <tr className="table text-center">
-                            <td><span className="text-danger">Mahi Sai Srinivas Bonnili</span></td><td>100%</td><td>100%</td><td>100%</td><td>100%</td>
-                        </tr>
-                        <tr className="table text-center">
-                            <td><span className="text-danger">Siran Cao</span></td><td>100%</td><td>100%</td><td>100%</td><td>100%</td>
-                        </tr>
+                        {enrolled_students.map((st) => 
+                            <tr className="table text-center">
+                                <td><span className="text-danger">{st.firstName} {st.lastName}</span></td>
+                                {grades.filter((record) => record.student === st._id).map((record) => <td>{record.grade}</td>) }
+                            </tr>
+                        )}
                     </tbody>
 
                 </table>

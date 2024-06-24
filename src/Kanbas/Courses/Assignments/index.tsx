@@ -8,8 +8,10 @@ import LessonControlButtons from "../Modules/LessonControlButtons";
 import "./index.css"
 
 export default function Assignments() {
-    const { cid } = useParams();
+    const { cid, aid } = useParams();
     const assignments = db.assignments;
+    console.log(aid);
+    console.log(cid);
 
     return (
         <div id="wd-assignments">
@@ -35,7 +37,7 @@ export default function Assignments() {
                                             <FaRegEdit className="text-success me-2 fs-3"/>
                                         </div>
                                         <div className="col-10">
-                                            <Link className="wd-assignment-link link-dark link-underline-light" to="#/Kanbas/Courses/1234/Assignments/123">{assignment._id}</Link><br />
+                                            <Link key={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} className="wd-assignment-link link-dark link-underline-light">{assignment._id}</Link><br />
                                             <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 6 at 12:00am | <b>Due</b> May 13 at 11:59pm | 100 pts
                                         </div>
                                         <div className="col-1">
