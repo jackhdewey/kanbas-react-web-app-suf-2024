@@ -16,9 +16,7 @@ export default function ArrayStateVariable() {
                 {array.map((item, index) => (
                     <li key={index}>
                         {item}
-                        <button onClick={() => deleteElement(index)}
-                                id="wd-delete-element-click">
-                        Delete</button>
+                        <button onClick={() => deleteElement(index)} id="wd-delete-element-click">Delete</button>
                     </li>
                 ))}
             </ul>
