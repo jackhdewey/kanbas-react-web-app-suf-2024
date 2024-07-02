@@ -6,7 +6,6 @@ import { addModule, editModule, updateModule, deleteModule } from "./reducer";
 import ModuleControls from "./ModuleControls";
 import ModuleControlButtons from "./ModuleControlButtons";
 import LessonControlButtons from "./LessonControlButtons";
-import * as db from "../../Database";
 import "./index.css"
 
 export default function Modules() {
