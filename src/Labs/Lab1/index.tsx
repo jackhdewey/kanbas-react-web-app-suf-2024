@@ -312,7 +312,7 @@ export default function Lab1() {
                     <input type="range" id="wd-text-fields-rating" max="5" value="4" placeholder="Doe" /><br />
 
                     <label htmlFor="wd-text-fields-dob"> Date of birth: </label>
-                    <input type="date" id="wd-text-fields-email" value="2000-01-21"/><br />
+                    <input type="date" id="wd-text-fields-dob" value="2000-01-21"/><br />
 
                 </form>
 

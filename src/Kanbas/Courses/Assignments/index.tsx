@@ -24,7 +24,7 @@ export default function Assignments() {
                     <div className="wd-title p-3 ps-2 bg-secondary">
                         <BsGripVertical className="me-2 fs-3" />
                         ASSIGNMENTS
-                        <ModuleControlButtons />
+                        {/* <ModuleControlButtons moduleId={module._id} /> */}
                     </div>
 
                     <ul className="wd-assignments list-group rounded-0">
