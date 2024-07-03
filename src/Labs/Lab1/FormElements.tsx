@@ -22,42 +22,47 @@ export default function FormElements() {
                 <input type="text" id="wd-text-fields-last-name" placeholder="Doe" value="Wonderland" title="The last name"/>
 
             </form>
+            <br />
 
             <h5>Text boxes</h5>
 
             <label>Biography:</label><br />
-
             <textarea id="wd-textarea" cols={30} rows={10}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </textarea>
+            <hr />
 
-            <br />
 
             <h5 id="wd-buttons">Buttons</h5>
+
             <button id="wd-all-good" onClick={() => alert("Life is Good!")} type="button">
                 Hello World!
             </button>
+            <br /><br />
 
 
             <h5>File upload</h5>
+
             <input id="wd-upload" type="file"/>
+            <br /><br />
 
 
             <h5 id="wd-radio-buttons">Radio buttons</h5>
 
-            <label>Favorite movie genre:</label><br />
+            <label>Favorite Movie Genre:</label><br />
 
             <input type="radio" name="radio-genre" id="wd-radio-comedy"/>
             <label htmlFor="wd-radio-comedy">Comedy</label><br />
 
-            <               input type="radio" name="radio-genre" id="wd-radio-drama"/>
+            <input type="radio" name="radio-genre" id="wd-radio-drama"/>
             <label htmlFor="wd-radio-drama">Drama</label><br />
 
             <input type="radio" name="radio-genre" id="wd-radio-scifi"/>
             <label htmlFor="wd-radio-scifi">Science Fiction</label><br />
 
             <input type="radio" name="radio-genre" id="wd-radio-fantasy"/>
-            <label htmlFor="wd-radio-fantasy">Fantasy</label>   
+            <label htmlFor="wd-radio-fantasy">Fantasy</label>  
+            <br /><br /> 
 
 
             <h5 id="wd-checkboxes">Checkboxes</h5>
@@ -74,8 +79,8 @@ export default function FormElements() {
 
             <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy"/> 
             <label htmlFor="wd-chkbox-fantasy">Fantasy</label><br />
-
             <br />
+
 
             <h4 id="wd-dropdowns">Dropdowns</h4>
 
@@ -87,6 +92,7 @@ export default function FormElements() {
                 <option value="SCIFI">Science Fiction</option>
                 <option value="FANTASY">Fantasy</option>
             </select>
+            <br /><br />
 
             <h5>Select Many</h5>
             <label htmlFor="wd-select-many-genre">Favorite movie genres:</label><br />
@@ -96,8 +102,8 @@ export default function FormElements() {
                 <option value="SCIFI">Science Fiction</option>
                 <option value="FANTASY">Fantasy</option>
             </select>
-
             <br /><br />
+
 
             <form id="wd-text-fields-other">
 
@@ -116,8 +122,8 @@ export default function FormElements() {
                 <input type="date" id="wd-text-fields-dob" value="2000-01-21"/><br />
 
             </form>
-
             <hr />
+            
 
             <h4>Anchor tag</h4>
             Please <a id="wd-lipsum" href="https://www.lipsum.com">click here</a> to get dummy text<br/>
