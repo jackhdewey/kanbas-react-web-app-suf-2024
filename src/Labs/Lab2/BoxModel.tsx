@@ -74,7 +74,9 @@ export default function BoxModel() {
             </div>
 
             <div id="wd-css-dimensions">
+
                 <h2>Dimension</h2>
+                
                 <div>
                     <div className="wd-dimension-portrait wd-bg-color-yellow">
                         Portrait
@@ -86,6 +88,7 @@ export default function BoxModel() {
                         Square
                     </div>
                 </div>
+                
             </div>
 
 
