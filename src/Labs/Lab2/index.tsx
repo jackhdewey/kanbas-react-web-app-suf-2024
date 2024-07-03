@@ -26,7 +26,9 @@ export default function Lab2() {
         <BoxModel />
         <Positions />
         <GridLayout />
+        
         <ReactIconsSampler />
+
         <GridSystem />
         <ScreenSizeLabel />
         <Tables />
