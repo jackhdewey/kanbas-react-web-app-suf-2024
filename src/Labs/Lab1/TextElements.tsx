@@ -9,7 +9,7 @@ export default function TextElements() {
 
             </div>
 
-            <hr />
+            <br />
 
             <div id="wd-p-tag">
 
