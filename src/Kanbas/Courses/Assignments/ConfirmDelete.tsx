@@ -1,6 +1,8 @@
-export default function ConfirmDelete({ dialogTitle, moduleName, setModuleName, addModule }:
-    { dialogTitle: string; moduleName: string; setModuleName: (name: string) => void; addModule: () => void; }) 
-{
+import { useDispatch } from "react-redux";
+import { deleteAssignment } from "./reducer";
+
+export default function ConfirmDelete({ dialogTitle, aid }: { dialogTitle: string; aid: string; }) {
+    const dispatch = useDispatch();
     return (
         <div id="wd-add-module-dialog" className="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
 
@@ -13,14 +15,13 @@ export default function ConfirmDelete({ dialogTitle, moduleName, setModuleName, 
                         <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
-                    <div className="modal-body">
-                        <input className="form-control" value={moduleName} placeholder="Module Name"
-                            onChange={(e) => setModuleName(e.target.value)}/>
+                    <div className="modal-body word-wrap">
+                        Are you sure you want to delete this?
                     </div>
 
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"> Cancel </button>
-                        <button onClick={addModule} type="button" data-bs-dismiss="modal" className="btn btn-danger"> Add Module </button>
+                        <button onClick={() => dispatch(deleteAssignment(aid))} type="button" data-bs-dismiss="modal" className="btn btn-danger"> Ok </button>
                     </div>
                     
                 </div>
