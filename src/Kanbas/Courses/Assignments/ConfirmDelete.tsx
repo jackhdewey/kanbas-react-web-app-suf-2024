@@ -1,4 +1,4 @@
-export default function ModuleEditor({ dialogTitle, moduleName, setModuleName, addModule }:
+export default function ConfirmDelete({ dialogTitle, moduleName, setModuleName, addModule }:
     { dialogTitle: string; moduleName: string; setModuleName: (name: string) => void; addModule: () => void; }) 
 {
     return (
@@ -29,4 +29,3 @@ export default function ModuleEditor({ dialogTitle, moduleName, setModuleName, a
         </div>
     );
 }
-    

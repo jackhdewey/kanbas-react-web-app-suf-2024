@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { BsGripVertical } from "react-icons/bs";
-import { addModule, editModule, updateModule, deleteModule } from "./reducer";
 import ModuleControls from "./ModuleControls";
 import ModuleControlButtons from "./ModuleControlButtons";
 import LessonControlButtons from "./LessonControlButtons";
+import { addModule, editModule, updateModule, deleteModule } from "./reducer";
 import "./index.css"
 
 export default function Modules() {
-    const { cid } = useParams();
-    const [ moduleName, setModuleName ] = useState("");
-    const { modules } = useSelector((state: any) => state.modulesReducer);
     const dispatch = useDispatch();
+    const { cid } = useParams();
+    const { modules } = useSelector((state: any) => state.modulesReducer);
+    const [ moduleName, setModuleName ] = useState("");
     
     return (
         <div id="wd-modules">

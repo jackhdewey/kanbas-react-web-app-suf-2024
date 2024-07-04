@@ -16,7 +16,7 @@ export default function Kanbas() {
                                                 description: "New Description"});
 
     const addNewCourse = () => {
-        const newCourse = { ...course, name: `${course.name} ${courses.length}`, _id: new Date().getTime().toString() };
+        const newCourse = { ...course, name: `${course.name} ${courses.length + 1}`, _id: new Date().getTime().toString() };
         setCourses([ newCourse, ...courses]);
     };
 

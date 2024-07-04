@@ -48,6 +48,7 @@ export default function ModulesControls({moduleName, setModuleName, addModule}:
 
         <button id="wd-collapse-all" className="btn btn-lg btn-secondary me-1 float-end">Collapse All</button> 
         <button id="wd-view-progress" className="btn btn-lg btn-secondary me-1 float-end">View Progress</button> 
+
         <ModuleEditor dialogTitle="Add Module" moduleName={moduleName} setModuleName={setModuleName} addModule={addModule} />
 
     </div>

@@ -3,22 +3,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
+
 import AssignmentControls from "./AssignmentControls";
 import ModuleControlButtons from "../Modules/ModuleControlButtons";
-import LessonControlButtons from "../Modules/LessonControlButtons";
-import * as db from "../../Database";
+import AssignmentControlButtons from "./AssignmentControlButtons";
 import "./index.css"
 
 export default function Assignments() {
-    const { cid, aid } = useParams();
+    const { cid } = useParams();
     const { assignments } = useSelector((state: any) => state.assignmentsReducer);
-    console.log(aid);
-    console.log(cid);
+    const course_assignments = assignments.filter((a: any) => (a.course === cid));
 
     return (
         <div id="wd-assignments">
 
-            {cid && <AssignmentControls cid={cid} aid={""} />}<br /><br /><br />
+            {cid && <AssignmentControls cid={cid} aid={`A10${course_assignments.length+1}`} />}
+            
+            <br/><br/><br/>
 
             <ul id="wd-assignments" className="list-group rounded-0">
 
@@ -34,7 +35,7 @@ export default function Assignments() {
                             (
                                 <li className="wd-assignment list-group-item p-3 ps-1">
                                     <div className="row">
-                                        <div className="col-1">
+                                        <div className="col-1 text-nowrap">
                                             <BsGripVertical className="me-2 fs-3" />
                                             <FaRegEdit className="text-success me-2 fs-3"/>
                                         </div>
@@ -42,11 +43,11 @@ export default function Assignments() {
                                             <Link key={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} 
                                                   to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} 
                                                   className="wd-assignment-link link-dark link-underline-light">{assignment._id}</Link><br />
-                                                  
-                                            <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 6 at 12:00am | <b>Due</b> May 13 at 11:59pm | 100 pts
+
+                                            <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> {assignment.date_available.split("-")[1]} {assignment.date_available.split("-")[2]}  at 12:00am | <b>Due</b> {assignment.due_date.split("-")[1]} {assignment.due_date.split("-")[2]} at 11:59pm | {assignment.points} pts
                                         </div>
                                         <div className="col-1">
-                                            <LessonControlButtons />    
+                                            <AssignmentControlButtons aid={assignment._id}/>    
                                         </div>
                                     </div>
                                 </li>

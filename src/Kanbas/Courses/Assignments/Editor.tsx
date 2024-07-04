@@ -1,19 +1,32 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import * as db from "../../Database";
+import { useDispatch } from "react-redux";
+import { addAssignment } from "./reducer";
 
 export default function AssignmentEditor() {
+    const dispatch = useDispatch();
     const { cid, aid } = useParams();
-    const assignments = db.assignments;
-    const a = assignments.find((assignment) => assignment._id === aid);
+    const [ a, updateAssignment ] = useState<any>({ 
+        "_id": aid, 
+        "title": "New Assignment",    
+        "course": cid, 
+        "date_available": "2024-06-24", 
+        "due_date":"2024-06-24", 
+        "points":"100", 
+        "description":"a test of your knowledge"
+    });
 
     return (
 
         <div id="wd-assignments-editor">
 
             <label htmlFor="wd-name" className="form-label"><h4>Assignment Name</h4></label>
-            <input id="wd-name" className="form-control" value={a &&`${a._id} - ${a.title}`} /><br />
 
-            <textarea id="wd-description" className="form-control" cols={50} rows={9}>
+            <input id="wd-name" className="form-control" 
+                    value={a &&`${a.title}`} onChange={(e) => updateAssignment({...a, title: e.target.value})} /><br />
+
+            <textarea id="wd-description" className="form-control" cols={50} rows={9}
+                        value={a.description} onChange={(e) => updateAssignment({...a, description: e.target.value})} >
                 {a && a.description}
             </textarea><br />
 
@@ -25,7 +38,8 @@ export default function AssignmentEditor() {
                 </div>
                 
                 <div className="col-5">
-                    <input id="wd-points" className="form-control" value={a && a.points} />
+                    <input id="wd-points" className="form-control" 
+                            value={a && a.points} onChange={(e) => updateAssignment({...a, points: e.target.value})}/>
                 </div>
     
             </div><br />
@@ -123,18 +137,20 @@ export default function AssignmentEditor() {
                                 <input id="wd-assign-to" className="form-control mb-2" value="Everyone" />
                     
                                 Due<br />
-                                <input type="date" id="wd-due-date" className="form-control mb-2" value={a && a.due_date} />
+                                <input type="date" id="wd-due-date" className="form-control mb-2" 
+                                        value={a && a.due_date} onChange={(e) => {updateAssignment({...a, due_date: e.target.value}); console.log(e.target.value);}}/>
                         
                                 <div className="row pt-2">
                                     
                                     <div className="col">
                                         Available from<br/>
-                                        <input type="date" id="wd-available-from" className="form-control mb-2" value={a && a.date_available} />
+                                        <input type="date" id="wd-available-from" className="form-control mb-2" 
+                                                value={a && a.date_available} onChange={(e) => updateAssignment({...a, date_available: e.target.value})}/>
                                     </div>
                                 
                                     <div className="col">
                                         Until<br/>
-                                        <input type="date" id="wd-availaible-until" className="form-control mb-2" value={a && a.due_date} />
+                                        <input type="date" id="wd-availaible-until" className="form-control mb-2" value={a && a.available_until} onChange={(e) => updateAssignment({...a, available_until: e.target.value})} />
                                     </div>
                                     
                                 </div>
@@ -151,7 +167,7 @@ export default function AssignmentEditor() {
 
             <div>
 
-                <Link to={`/Kanbas/Courses/${cid}/Assignments`} id="wd-save" type="button" className="btn btn-danger float-end">
+                <Link to={`/Kanbas/Courses/${cid}/Assignments`} id="wd-save" type="button" className="btn btn-danger float-end" onClick={() => {dispatch(addAssignment(a))}}>
                     Save
                 </Link>  
 
