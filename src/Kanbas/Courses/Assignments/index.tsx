@@ -1,22 +1,24 @@
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import * as db from "../../Database";
 import { FaRegEdit } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
 import AssignmentControls from "./AssignmentControls";
 import ModuleControlButtons from "../Modules/ModuleControlButtons";
 import LessonControlButtons from "../Modules/LessonControlButtons";
+import * as db from "../../Database";
 import "./index.css"
 
 export default function Assignments() {
     const { cid, aid } = useParams();
-    const assignments = db.assignments;
+    const { assignments } = useSelector((state: any) => state.assignmentsReducer);
     console.log(aid);
     console.log(cid);
 
     return (
         <div id="wd-assignments">
 
-            <AssignmentControls /><br /><br /><br />
+            {cid && <AssignmentControls cid={cid} aid={""} />}<br /><br /><br />
 
             <ul id="wd-assignments" className="list-group rounded-0">
 
@@ -37,7 +39,10 @@ export default function Assignments() {
                                             <FaRegEdit className="text-success me-2 fs-3"/>
                                         </div>
                                         <div className="col-10">
-                                            <Link key={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} className="wd-assignment-link link-dark link-underline-light">{assignment._id}</Link><br />
+                                            <Link key={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} 
+                                                  to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} 
+                                                  className="wd-assignment-link link-dark link-underline-light">{assignment._id}</Link><br />
+                                                  
                                             <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 6 at 12:00am | <b>Due</b> May 13 at 11:59pm | 100 pts
                                         </div>
                                         <div className="col-1">
