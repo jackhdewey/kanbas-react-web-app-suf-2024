@@ -51,6 +51,7 @@ export default function Lab3() {
 
             <VariablesAndConstants />
             <VariableTypes />
+
             <BooleanVariables />
             <IfElse />
             <TernaryOperator />
@@ -62,7 +63,6 @@ export default function Lab3() {
             <ImpliedReturn />
 
             <TemplateLiterals />
-
             <SimpleArrays />
             <ArrayIndexAndLength />
             <AddingAndRemovingToFromArrays />
@@ -70,7 +70,6 @@ export default function Lab3() {
             <MapFunction />
             <FindFunction />
             <FilterFunction />
-
             <JsonStringify />
             <House />
             <TodoItem />
