@@ -1,8 +1,8 @@
-import {Routes, Route, Navigate} from "react-router";
 import { useState } from "react";
 import { Provider } from "react-redux";
-import Dashboard from "./Dashboard"
+import {Routes, Route, Navigate} from "react-router";
 import KanbasNavigation from "./Navigation";
+import Dashboard from "./Dashboard"
 import Courses from "./Courses";
 import * as db from "./Database";
 import store from "./store";
@@ -11,6 +11,7 @@ import "./styles.css";
 export default function Kanbas() {
 
     const [courses, setCourses] = useState(db.courses);
+    
     const [course, setCourse] = useState<any>({_id: "0", name: "New Course", number: "New Number", image: "/images/reactjs.jpg", 
                                                 startDate: "2023-09-10", endDate: "2023-12-15", department: "Department", credits: 4,
                                                 description: "New Description"});
@@ -28,9 +29,9 @@ export default function Kanbas() {
         setCourses(
             courses.map((c) => {
                 if (c._id === course._id) {
-                return course;
+                    return course;
                 } else {
-                return c;
+                    return c;
                 }
             })
         );
@@ -50,8 +51,7 @@ export default function Kanbas() {
                         <Routes>
                             <Route path="/" element={<Navigate to="Dashboard"/>}/>
                             <Route path="Account" element={<h1>Account</h1>} />
-                            <Route path="Dashboard" element={
-                                                            <Dashboard 
+                            <Route path="Dashboard" element={<Dashboard 
                                                                 courses={courses}
                                                                 course={course}
                                                                 setCourse={setCourse}
@@ -68,7 +68,6 @@ export default function Kanbas() {
             </div>
 
         </Provider>
-   
     );
 }
   

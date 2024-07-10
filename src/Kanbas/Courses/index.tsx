@@ -8,6 +8,7 @@ import AssignmentEditor from "./Assignments/Editor";
 import Grades from "./Grades";
 
 export default function Courses( { courses }: {courses: any[]}) {
+    
     const { pathname } = useLocation()
     const { cid } = useParams();
     const course = courses.find((course) => course._id === cid);
