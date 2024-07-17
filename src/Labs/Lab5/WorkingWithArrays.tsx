@@ -2,6 +2,7 @@ import React, { useState } from "react";
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 
 export default function WorkingWithArrays() {
+
     const API = `${REMOTE_SERVER}/lab5/todos`;
     const [todo, setTodo ] = useState({
         id: "1", 
@@ -10,6 +11,7 @@ export default function WorkingWithArrays() {
         due: "2021-09-09",
         completed: false, 
     });
+
     return (
         <div id="wd-working-with-arrays">
             <h3>Working with Arrays</h3>
@@ -50,6 +52,22 @@ export default function WorkingWithArrays() {
                 onChange={(e) => setTodo({ ...todo, id: e.target.value })}/>
             <input value={todo.title} className="form-control w-50 float-start"
                     onChange={(e) => setTodo({ ...todo, title: e.target.value }) }/>
+            <br /><br />
+
+            <a href={`${API}/${todo.id}/description/${todo.description}`} className="btn btn-primary float-end">
+                Describe Todo</a>
+            <input value={todo.id} className="form-control w-25 float-start me-2"
+                onChange={(e) => setTodo({ ...todo, id: e.target.value })}/>
+            <input value={todo.description} className="form-control w-50 float-start"
+                    onChange={(e) => setTodo({ ...todo, description: e.target.value }) }/>
+            <br /><br />
+
+            <a href={`${API}/${todo.id}/completed/${todo.completed}`} className="btn btn-primary float-end">
+                Complete Todo</a>
+            <input value={todo.id} className="form-control w-25 float-start me-2"
+                onChange={(e) => setTodo({ ...todo, id: e.target.value })}/>
+            <input checked={todo.completed} type="checkbox" className="form-check-input float-start"
+                    onChange={(e) => setTodo({ ...todo, completed: e.target.checked }) }/>
             <br /><br /><hr />
 
         </div>

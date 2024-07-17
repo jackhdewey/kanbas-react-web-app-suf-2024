@@ -71,13 +71,12 @@ export default function WorkingWithObjects() {
             <hr /> 
 
             <a id="wd-update-module-name" className="btn btn-primary float-end"
-                href={`${MODULE_API_URL}/title/${module.name}`}>
+                href={`${MODULE_API_URL}/name/${module.name}`}>
                 Update Name
             </a>
             <input className="form-control w-75" id="wd-module-name"
                 value={module.name} onChange={(e) => setModule({ ...module, name: e.target.value })}/>
             <br />
-
             <a id="wd-update-module-description" className="btn btn-primary float-end"
                 href={`${MODULE_API_URL}/description/${module.description}`}>
                 Update Description
