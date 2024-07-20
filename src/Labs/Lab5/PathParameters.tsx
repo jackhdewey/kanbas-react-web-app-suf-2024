@@ -6,11 +6,14 @@ export default function PathParameters() {
   const [b, setB] = useState("23");
   return (
     <div>
+
       <h3>Path Parameters</h3>
-      <input className="form-control mb-2" id="wd-path-parameter-a" type="number" value={a}
-             onChange={(e) => setA(e.target.value)}/>
-      <input className="form-control mb-2" id="wd-path-parameter-b" type="number" value={b}
-             onChange={(e) => setB(e.target.value)}/>
+
+      <input className="form-control mb-2" id="wd-path-parameter-a" 
+               type="number" value={a} onChange={(e) => setA(e.target.value)}/>
+      <input className="form-control mb-2" id="wd-path-parameter-b" 
+               type="number" value={b} onChange={(e) => setB(e.target.value)}/>
+
       <a className="btn btn-primary me-2" id="wd-path-parameter-add"
          href={`${REMOTE_SERVER}/lab5/add/${a}/${b}`}>
          Add {a} + {b}
@@ -28,6 +31,7 @@ export default function PathParameters() {
          Divide {a} / {b}
       </a>
       <hr />
+
     </div>
   );
 }
