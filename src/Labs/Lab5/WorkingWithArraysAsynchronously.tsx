@@ -76,9 +76,9 @@ export default function WorkingWithArraysAsynchronously() {
                 {todos.map((todo) => (
                 <li key={todo.id} className="list-group-item">
 
-                    <FaPencil onClick={() => editTodo(todo)} className="text-primary float-end me-2 mt-1" />
                     <FaTrash onClick={() => removeTodo(todo)} className="text-danger float-end mt-1 me-2" id="wd-remove-todo"/>
                     <TiDelete onClick={() => deleteTodo(todo)} className="text-danger float-end me-2 fs-3" id="wd-delete-todo" />
+                    <FaPencil onClick={() => editTodo(todo)} className="text-primary float-end me-2 mt-1" />
                     
                     {!todo.editing ? 
                         (
