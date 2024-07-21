@@ -1,31 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
 import {Routes, Route, Navigate} from "react-router";
 import KanbasNavigation from "./Navigation";
 import Dashboard from "./Dashboard"
 import Courses from "./Courses";
-import * as db from "./Database";
+import * as client from "./Courses/client";
 import store from "./store";
 import "./styles.css";
 
 export default function Kanbas() {
 
-    const [courses, setCourses] = useState(db.courses);
+    const [courses, setCourses] = useState<any[]>([]);
+    const fetchCourses = async() => {
+        const courses = await client.fetchAllCourses();
+        setCourses(courses);
+    };
+    useEffect(() => {
+        fetchCourses();
+    }, []);
     
-    const [course, setCourse] = useState<any>({_id: "0", name: "New Course", number: "New Number", image: "/images/reactjs.jpg", 
+    const [course, setCourse] = useState<any>({_id: "0", name: "New Course", 
+                                                number: "New Number", 
+                                                image: "/images/reactjs.jpg", 
                                                 startDate: "2023-09-10", endDate: "2023-12-15", department: "Department", credits: 4,
                                                 description: "New Description"});
-
-    const addNewCourse = () => {
-        const newCourse = { ...course, name: `${course.name} ${courses.length + 1}`, _id: new Date().getTime().toString() };
-        setCourses([ newCourse, ...courses]);
+    const addNewCourse = async () => {
+        const newCourse = await client.createCourse(course);
+        setCourses([ ...courses, newCourse]);
     };
 
-    const deleteCourse = (courseId: string) => {
-        setCourses(courses.filter((course) => course._id !== courseId));
+    const deleteCourse = async (courseId: string) => {
+        const response = await client.deleteCourse(courseId);
+        setCourses(courses.filter((c) => c._id !== courseId));
     };
 
-    const updateCourse = () => {
+    const updateCourse = async () => {
+        await client.updateCourse(course);
         setCourses(
             courses.map((c) => {
                 if (c._id === course._id) {

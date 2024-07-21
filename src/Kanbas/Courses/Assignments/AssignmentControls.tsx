@@ -7,15 +7,23 @@ export default function AssignmentControls({cid, aid}: {cid: string; aid: string
       <div id="wd-assignment-controls" className="text-nowrap">
           <div>
               <CiSearch className="position-absolute" style={{top: "170px", width: "40px"}}/>
-              <input id="wd-search-assignment" type="text" className="form-control me-1 float-start" style={{height: "65px", width: "400px"}} placeholder="    Search...">
+              <input 
+                id="wd-search-assignment" 
+                type="text" 
+                className="form-control me-1 float-start" 
+                style={{height: "65px", width: "400px"}} 
+                placeholder="    Search...">
               </input>
           </div>
 
-          <Link key={`/Kanbas/Courses/${cid}/Assignments/${aid}`} 
+          <Link 
+                id="wd-add-assignment" 
+                key={`/Kanbas/Courses/${cid}/Assignments/${aid}`} 
                 to={`/Kanbas/Courses/${cid}/Assignments/${aid}`}
-                id="wd-add-assignment" className="btn btn-lg btn-danger me-1 float-end">
-              <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-              Assignment
+                className="btn btn-lg btn-danger me-1 float-end">
+                    
+                <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+                Assignment
           </Link>
 
           <button id="wd-add-assignment-group" className="btn btn-lg btn-secondary me-1 float-end">

@@ -1,24 +1,56 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { BsGripVertical } from "react-icons/bs";
 import ModuleControls from "./ModuleControls";
 import ModuleControlButtons from "./ModuleControlButtons";
 import LessonControlButtons from "./LessonControlButtons";
-import { addModule, editModule, updateModule, deleteModule } from "./reducer";
+import { setModules, addModule, editModule, updateModule, deleteModule } from "./reducer";
+import * as client from "./client";
 import "./index.css"
 
 export default function Modules() {
 
     const { cid } = useParams();
+    const dispatch = useDispatch();
+    const fetchModules = async () => {
+        const modules = await client.findModulesForCourse(cid as string);
+        dispatch(setModules(modules));
+    };
+    useEffect(() => {
+        fetchModules();
+    }, []);
+
     const { modules } = useSelector((state: any) => state.modulesReducer);
     const [ moduleName, setModuleName ] = useState("");
-    const dispatch = useDispatch();
+
+    const createModule = async (module: any) => {
+        const newModule = await client.createModule(cid as string, module);
+        dispatch(addModule(newModule));
+    }
+    const removeModule = async (moduleId: string) => {
+        await client.deleteModule(moduleId);
+        dispatch(deleteModule(moduleId));
+    }
+    const saveModule = async (module: any) => {
+        const status = await client.updateModule(module);
+        dispatch(updateModule(module));
+    }
     
     return (
         <div id="wd-modules">
 
-            <ModuleControls moduleName={moduleName} setModuleName={setModuleName} addModule={() => {dispatch(addModule({name: moduleName, course: cid })); setModuleName(""); }} /> <br /><br /><br />
+            <ModuleControls 
+                moduleName={moduleName} 
+                setModuleName={setModuleName} 
+                addModule={
+                    () => {
+                        createModule({name: moduleName, course: cid }); 
+                        setModuleName(""); 
+                    }
+                } /> 
+            
+            <br /><br /><br />
           
             <ul id="wd-modules" className="list-group rounded-0">
 
@@ -29,12 +61,23 @@ export default function Modules() {
                               <div className="wd-title p-3 ps-2 bg-secondary">
                                     <BsGripVertical className="me-2 fs-3" />
 
-                                    {!module.editing && module.name}
-                                    {module.editing && (
-                                        <input className="form-control w-50 d-inline-block" onChange={(e) => dispatch(updateModule({...module, name: e.target.value}))}
-                                            onKeyDown={(e) => {if (e.key === "Enter") {dispatch(updateModule({ ...module, editing: false}))}}} value={module.name}/>)}
+                                    { !module.editing ? module.name
+                                    : (
+                                        <input className="form-control w-50 d-inline-block" 
+                                            value={module.name}
+                                            onChange={(e) => saveModule({...module, name: e.target.value})}
+                                            onKeyDown={(e) => {
+                                                if (e.key === "Enter") {
+                                                    saveModule({ ...module, editing: false})
+                                                }
+                                            }}/>
+                                        )
+                                    }
 
-                                    <ModuleControlButtons moduleId={module._id} deleteModule={(moduleId) => {dispatch(deleteModule(moduleId))}} editModule={(moduleId) => {dispatch(editModule(moduleId))}}/>
+                                    <ModuleControlButtons 
+                                        moduleId={module._id} 
+                                        deleteModule={(moduleId) => {removeModule(moduleId)}} 
+                                        editModule={(moduleId) => {dispatch(editModule(moduleId))}}/>
                               </div>
 
                               {module.lessons && (

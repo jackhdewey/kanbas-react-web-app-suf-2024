@@ -1,22 +1,33 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
 import AssignmentControls from "./AssignmentControls";
-import ModuleControlButtons from "../Modules/ModuleControlButtons";
 import AssignmentControlButtons from "./AssignmentControlButtons";
+import { setAssignments, deleteAssignment } from "./reducer";
+import * as client from "./client";
 import "./index.css"
 
 export default function Assignments() {
 
     const { cid } = useParams();
+    const dispatch = useDispatch();
+    const fetchAssignments = async () => {
+        const assignments = await client.findAssignmentsForCourse(cid as string);
+        dispatch(setAssignments(assignments));
+    };
+    useEffect(() => {
+        fetchAssignments();
+    }, []);
+
     const { assignments } = useSelector((state: any) => state.assignmentsReducer);
-    const course_assignments = assignments.filter((a: any) => (a.course === cid));
+    let last_index = assignments.length;
 
     return (
         <div id="wd-assignments">
 
-            {cid && <AssignmentControls cid={cid} aid={`A10${course_assignments.length+1}`} />}
+            {cid && <AssignmentControls cid={cid} aid={`A10${last_index}`} />}
             
             <br/><br/><br/>
 
@@ -26,12 +37,11 @@ export default function Assignments() {
                     <div className="wd-title p-3 ps-2 bg-secondary">
                         <BsGripVertical className="me-2 fs-3" />
                         ASSIGNMENTS
-                        {/* <ModuleControlButtons moduleId={module._id} /> */}
                     </div>
 
                     <ul className="wd-assignments list-group rounded-0">
-                        {assignments.filter((assignment: any) => assignment.course === cid).map((assignment: any) => 
-                            (
+                        {assignments.filter((assignment: any) => assignment.course === cid)
+                            .map((assignment: any) => (
                                 <li className="wd-assignment list-group-item p-3 ps-1">
                                     <div className="row">
 
@@ -41,11 +51,21 @@ export default function Assignments() {
                                         </div>
 
                                         <div className="col-10">
-                                            <Link key={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} 
-                                                  to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} 
-                                                  className="wd-assignment-link link-dark link-underline-light">{assignment._id}</Link><br />
+                                            <Link 
+                                                key={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} 
+                                                to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} 
+                                                className="wd-assignment-link link-dark link-underline-light">
+                                                {assignment.title}
+                                            </Link>
+                                            
+                                            <br />
 
-                                            <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> {assignment.date_available.split("-")[1]} {assignment.date_available.split("-")[2]}  at 12:00am | <b>Due</b> {assignment.due_date.split("-")[1]} {assignment.due_date.split("-")[2]} at 11:59pm | {assignment.points} pts
+                                            <span className="text-danger">Multiple Modules</span> | <b>Not available until </b> 
+                                            {assignment.date_available.split("-")[1] + " "}
+                                            {assignment.date_available.split("-")[2]}  at 12:00am | <b>Due </b> 
+                                            {assignment.due_date.split("-")[1] + " "} 
+                                            {assignment.due_date.split("-")[2]} at 11:59pm | 
+                                            {assignment.points} pts
                                         </div>
 
                                         <div className="col-1">

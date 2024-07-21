@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addAssignment } from "./reducer";
+import { addAssignment, updateAssignment } from "./reducer";
+import * as client from "./client";
 
 export default function AssignmentEditor() {
-    const dispatch = useDispatch();
+
     const { cid, aid } = useParams();
     const [ a, updateAssignment ] = useState<any>({ 
         "_id": aid, 
@@ -15,6 +16,12 @@ export default function AssignmentEditor() {
         "points":"100", 
         "description":"a test of your knowledge"
     });
+
+    const dispatch = useDispatch();
+    const saveAssignment = async (assignment: any) => {
+        const newAssignment = await client.createAssignment(cid as string, assignment);
+        dispatch(addAssignment(newAssignment));
+    }
 
     return (
 
@@ -124,42 +131,45 @@ export default function AssignmentEditor() {
 
             <div className="row justify-content-end">
 
-                    <div className="col-2">
-                        <label htmlFor="wd-assign-to" className="form-label">Assign</label>
-                    </div>
+                <div className="col-2">
+                    <label htmlFor="wd-assign-to" className="form-label">Assign</label>
+                </div>
 
-                    <div className="col-5">
-
-                        <div className="card">
-                            <div className="card-body">
+                <div className="col-5">
+                    <div className="card">
+                        <div className="card-body">
                         
-                                Assign to<br/>
-                                <input id="wd-assign-to" className="form-control mb-2" value="Everyone" />
+                            Assign to<br/>
+                            <input id="wd-assign-to" className="form-control mb-2" value="Everyone" />
                     
-                                Due<br />
-                                <input type="date" id="wd-due-date" className="form-control mb-2" 
-                                        value={a && a.due_date} onChange={(e) => {updateAssignment({...a, due_date: e.target.value}); console.log(e.target.value);}}/>
+                            Due<br />
+                            <input type="date" id="wd-due-date" className="form-control mb-2" 
+                                    value={a && a.due_date} onChange={(e) => {updateAssignment({...a, due_date: e.target.value}); console.log(e.target.value);}}/>
                         
-                                <div className="row pt-2">
+                            <div className="row pt-2">
                                     
-                                    <div className="col">
-                                        Available from<br/>
-                                        <input type="date" id="wd-available-from" className="form-control mb-2" 
-                                                value={a && a.date_available} onChange={(e) => updateAssignment({...a, date_available: e.target.value})}/>
-                                    </div>
-                                
-                                    <div className="col">
-                                        Until<br/>
-                                        <input type="date" id="wd-availaible-until" className="form-control mb-2" value={a && a.available_until} onChange={(e) => updateAssignment({...a, available_until: e.target.value})} />
-                                    </div>
-                                    
+                                <div className="col">
+                                    Available from<br/>
+                                    <input 
+                                        type="date" id="wd-available-from" 
+                                        className="form-control mb-2" 
+                                        value={a && a.date_available} 
+                                        onChange={(e) => updateAssignment({...a, date_available: e.target.value})}/>
                                 </div>
-
+                                
+                                <div className="col">
+                                    Until<br/>
+                                    <input type="date" id="wd-availaible-until"   
+                                        className="form-control mb-2" 
+                                        value={a && a.available_until} 
+                                        onChange={(e) => updateAssignment({...a, available_until: e.target.value})} />
+                                </div>
+                                    
                             </div>
 
                         </div>
-
                     </div>
+                </div>
            
             </div>
                 
@@ -167,11 +177,20 @@ export default function AssignmentEditor() {
 
             <div>
 
-                <Link to={`/Kanbas/Courses/${cid}/Assignments`} id="wd-save" type="button" className="btn btn-danger float-end" onClick={() => {dispatch(addAssignment(a))}}>
+                <Link 
+                    to={`/Kanbas/Courses/${cid}/Assignments`} 
+                    type="button" 
+                    id="wd-save" 
+                    className="btn btn-danger float-end" 
+                    onClick={() => {saveAssignment(a)}}>
                     Save
                 </Link>  
 
-                <Link to={`/Kanbas/Courses/${cid}/Assignments`} type="button" id="wd-cancel" className="btn btn-secondary float-end" >
+                <Link 
+                    to={`/Kanbas/Courses/${cid}/Assignments`} 
+                    type="button" 
+                    id="wd-cancel" 
+                    className="btn btn-secondary float-end" >
                     Cancel
                 </Link>
 
