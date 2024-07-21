@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import * as client from "./client";
 
 export default function WorkingWithObjectsAsynchronously() {
-    const [assignment, setAssignment] = useState<any>({});
 
+    const [assignment, setAssignment] = useState<any>({});
     const fetchAssignment = async () => {
         const assignment = await client.fetchAssignment();
         setAssignment(assignment);
@@ -44,6 +44,7 @@ export default function WorkingWithObjectsAsynchronously() {
                     className="btn btn-primary me-2" >Update Title</button>
                     
             <pre>{JSON.stringify(assignment, null, 2)}</pre>
+            
             <hr />
 
         </div>

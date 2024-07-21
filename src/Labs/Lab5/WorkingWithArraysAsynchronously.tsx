@@ -8,6 +8,7 @@ export default function WorkingWithArraysAsynchronously() {
     
     const [ errorMessage, setErrorMessage ] = useState(null);
     
+    
     const [todos, setTodos] = useState<any[]>([]);
     const fetchTodos = async () => {
         const todos = await client.fetchTodos();
@@ -26,6 +27,7 @@ export default function WorkingWithArraysAsynchronously() {
         const updatedTodos = await client.removeTodo(todo);
         setTodos(updatedTodos);
     };
+
 
     const postTodo = async () => {
         const newTodo = await client.postTodo({ title: "New Posted Todo", completed: false, });
@@ -63,9 +65,11 @@ export default function WorkingWithArraysAsynchronously() {
         <div id="wd-asynchronous-arrays">
 
             <h3>Working with Arrays Asynchronously</h3>
+
             {errorMessage && (
                 <div id="wd-todo-error-message" className="alert alert-danger mb-2 mt-2">{errorMessage}</div>
             )}
+
             <h4>
                 Todos
                 <FaPlusCircle onClick={createTodo} className="text-success float-end fs-3" id="wd-create-todo" />
@@ -74,6 +78,7 @@ export default function WorkingWithArraysAsynchronously() {
 
             <ul className="list-group">
                 {todos.map((todo) => (
+
                 <li key={todo.id} className="list-group-item">
 
                     <FaTrash onClick={() => removeTodo(todo)} className="text-danger float-end mt-1 me-2" id="wd-remove-todo"/>
@@ -105,7 +110,9 @@ export default function WorkingWithArraysAsynchronously() {
                 </li>
                 ))}
             </ul> 
+
             <hr />
+
         </div>
     );
 }
