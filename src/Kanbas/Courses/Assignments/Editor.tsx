@@ -1,26 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
 import * as client from "./client";
 
 export default function AssignmentEditor() {
 
     const { cid, aid } = useParams();
-    const [ a, updateAssignment ] = useState<any>({ 
-        "_id": aid, 
-        "title": "New Assignment",    
-        "course": cid, 
-        "date_available": "2024-06-24", 
-        "due_date":"2024-06-24", 
-        "points":"100", 
-        "description":"a test of your knowledge"
-    });
+    const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+
+    let assignment = assignments.find((a: any) => a._id === aid);
+    let isNew = false;
+    if (!assignment) {
+        isNew = true;
+        assignment = {
+            "_id": aid,
+            "title": "New Assignment",    
+            "course": cid, 
+            "date_available": "2024-06-24", 
+            "due_date":"2024-06-24", 
+            "points":"100", 
+            "description":"a test of your knowledge"
+        }
+    }
+    const [ a, updateA ] = useState<any>(assignment);
 
     const dispatch = useDispatch();
-    const saveAssignment = async (assignment: any) => {
+    const newAssignment = async (assignment: any) => {
         const newAssignment = await client.createAssignment(cid as string, assignment);
         dispatch(addAssignment(newAssignment));
+    }
+    const saveAssignment = async (assignment: any) => {
+        await client.updateAssignment(assignment)
+        dispatch(updateAssignment(assignment));
     }
 
     return (
@@ -30,10 +42,10 @@ export default function AssignmentEditor() {
             <label htmlFor="wd-name" className="form-label"><h4>Assignment Name</h4></label>
 
             <input id="wd-name" className="form-control" 
-                    value={a &&`${a.title}`} onChange={(e) => updateAssignment({...a, title: e.target.value})} /><br />
+                    value={a &&`${a.title}`} onChange={(e) => updateA({...a, title: e.target.value})} /><br />
 
             <textarea id="wd-description" className="form-control" cols={50} rows={9}
-                        value={a.description} onChange={(e) => updateAssignment({...a, description: e.target.value})} >
+                        value={a.description} onChange={(e) => updateA({...a, description: e.target.value})} >
                 {a && a.description}
             </textarea><br />
 
@@ -46,7 +58,7 @@ export default function AssignmentEditor() {
                 
                 <div className="col-5">
                     <input id="wd-points" className="form-control" 
-                            value={a && a.points} onChange={(e) => updateAssignment({...a, points: e.target.value})}/>
+                            value={a && a.points} onChange={(e) => updateA({...a, points: e.target.value})}/>
                 </div>
     
             </div><br />
@@ -144,7 +156,7 @@ export default function AssignmentEditor() {
                     
                             Due<br />
                             <input type="date" id="wd-due-date" className="form-control mb-2" 
-                                    value={a && a.due_date} onChange={(e) => {updateAssignment({...a, due_date: e.target.value}); console.log(e.target.value);}}/>
+                                    value={a && a.due_date} onChange={(e) => {updateA({...a, due_date: e.target.value}); console.log(e.target.value);}}/>
                         
                             <div className="row pt-2">
                                     
@@ -154,7 +166,7 @@ export default function AssignmentEditor() {
                                         type="date" id="wd-available-from" 
                                         className="form-control mb-2" 
                                         value={a && a.date_available} 
-                                        onChange={(e) => updateAssignment({...a, date_available: e.target.value})}/>
+                                        onChange={(e) => updateA({...a, date_available: e.target.value})}/>
                                 </div>
                                 
                                 <div className="col">
@@ -162,7 +174,7 @@ export default function AssignmentEditor() {
                                     <input type="date" id="wd-availaible-until"   
                                         className="form-control mb-2" 
                                         value={a && a.available_until} 
-                                        onChange={(e) => updateAssignment({...a, available_until: e.target.value})} />
+                                        onChange={(e) => updateA({...a, available_until: e.target.value})} />
                                 </div>
                                     
                             </div>
@@ -182,7 +194,8 @@ export default function AssignmentEditor() {
                     type="button" 
                     id="wd-save" 
                     className="btn btn-danger float-end" 
-                    onClick={() => {saveAssignment(a)}}>
+                    onClick={
+                        isNew? () => {newAssignment(a)} : () => {saveAssignment(a)}}>
                     Save
                 </Link>  
 

@@ -21,7 +21,6 @@ export default function AssignmentControls({cid, aid}: {cid: string; aid: string
                 key={`/Kanbas/Courses/${cid}/Assignments/${aid}`} 
                 to={`/Kanbas/Courses/${cid}/Assignments/${aid}`}
                 className="btn btn-lg btn-danger me-1 float-end">
-                    
                 <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                 Assignment
           </Link>

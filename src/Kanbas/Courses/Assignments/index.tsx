@@ -5,7 +5,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
 import AssignmentControls from "./AssignmentControls";
 import AssignmentControlButtons from "./AssignmentControlButtons";
-import { setAssignments, deleteAssignment } from "./reducer";
+import { setAssignments } from "./reducer";
 import * as client from "./client";
 import "./index.css"
 
