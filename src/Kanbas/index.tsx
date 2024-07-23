@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
-import {Routes, Route, Navigate} from "react-router";
+import { Routes, Route, Navigate } from "react-router";
+
 import KanbasNavigation from "./Navigation";
 import Dashboard from "./Dashboard"
 import Courses from "./Courses";
@@ -11,6 +12,16 @@ import "./styles.css";
 export default function Kanbas() {
 
     const [courses, setCourses] = useState<any[]>([]);
+    const [course, setCourse] = useState<any>({_id: "0", 
+                                                name: "New Course", 
+                                                number: "New Number", 
+                                                image: "/images/reactjs.jpg", 
+                                                startDate: "2023-09-10", 
+                                                endDate: "2023-12-15", 
+                                                department: "Department", 
+                                                credits: 4,
+                                                description: "New Description"});
+
     const fetchCourses = async() => {
         const courses = await client.fetchAllCourses();
         setCourses(courses);
@@ -18,12 +29,7 @@ export default function Kanbas() {
     useEffect(() => {
         fetchCourses();
     }, []);
-    
-    const [course, setCourse] = useState<any>({_id: "0", name: "New Course", 
-                                                number: "New Number", 
-                                                image: "/images/reactjs.jpg", 
-                                                startDate: "2023-09-10", endDate: "2023-12-15", department: "Department", credits: 4,
-                                                description: "New Description"});
+
     const addNewCourse = async () => {
         const newCourse = await client.createCourse(course);
         setCourses([ ...courses, newCourse]);

@@ -1,5 +1,9 @@
-export default function ModuleEditor({ dialogTitle, moduleName, setModuleName, addModule }:
-    { dialogTitle: string; moduleName: string; setModuleName: (name: string) => void; addModule: () => void; }) 
+export default function ModuleEditor(
+    { dialogTitle, moduleName, setModuleName, addModule } : {   
+        dialogTitle: string; 
+        moduleName: string; 
+        setModuleName: (name: string) => void; 
+        addModule: () => void; }) 
 {
     return (
         <div id="wd-add-module-dialog" className="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -14,13 +18,22 @@ export default function ModuleEditor({ dialogTitle, moduleName, setModuleName, a
                     </div>
 
                     <div className="modal-body">
-                        <input className="form-control" value={moduleName} placeholder="Module Name"
+                        <input className="form-control" placeholder="Module Name"
+                            value={moduleName} 
                             onChange={(e) => setModuleName(e.target.value)}/>
                     </div>
 
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"> Cancel </button>
-                        <button onClick={addModule} type="button" data-bs-dismiss="modal" className="btn btn-danger"> Add Module </button>
+                        <button type="button" 
+                            data-bs-dismiss="modal"
+                            className="btn btn-secondary"> 
+                            Cancel 
+                        </button>
+                        <button onClick={addModule} type="button" 
+                            data-bs-dismiss="modal" 
+                            className="btn btn-danger"> 
+                            Add Module 
+                        </button>
                     </div>
                     
                 </div>

@@ -1,15 +1,9 @@
-import { useDispatch } from "react-redux";
-import { deleteAssignment } from "./reducer";
-import * as client from "./client";
-
-export default function ConfirmDelete({ dialogTitle, aid }: { dialogTitle: string; aid: string; }) {
+export default function ConfirmDelete({ dialogTitle, aid, removeAssignment } : { 
+    dialogTitle: string; 
+    aid: string; 
+    removeAssignment: (id: string) => void;
+}) {
     
-    const dispatch = useDispatch();
-    const removeAssignment = async (assignmentId: string) => {
-        await client.deleteAssignment(assignmentId);
-        dispatch(deleteAssignment(assignmentId));
-    }
-
     return (
         <div id="wd-add-module-dialog" className="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
 

@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { BsGripVertical } from "react-icons/bs";
+
 import AssignmentControls from "./AssignmentControls";
 import AssignmentControlButtons from "./AssignmentControlButtons";
-import { setAssignments } from "./reducer";
+import { setAssignments, deleteAssignment } from "./reducer";
 import * as client from "./client";
 import "./index.css"
 
@@ -22,12 +23,17 @@ export default function Assignments() {
     }, []);
 
     const { assignments } = useSelector((state: any) => state.assignmentsReducer);
-    let last_index = assignments.length;
+
+    const removeAssignment = async (assignmentId: string) => {
+        console.log(assignmentId);
+        await client.deleteAssignment(assignmentId);
+        dispatch(deleteAssignment(assignmentId));
+    }
 
     return (
         <div id="wd-assignments">
 
-            {cid && <AssignmentControls cid={cid} aid={`A10${last_index}`} />}
+            {cid && <AssignmentControls cid={cid} />}
             
             <br/><br/><br/>
 
@@ -60,16 +66,18 @@ export default function Assignments() {
                                             
                                             <br />
 
-                                            <span className="text-danger">Multiple Modules</span> | <b>Not available until </b> 
+                                            <span className="text-danger">
+                                                Multiple Modules </span> 
+                                            | <b>Not available until </b> 
                                             {assignment.date_available.split("-")[1] + " "}
-                                            {assignment.date_available.split("-")[2]}  at 12:00am | <b>Due </b> 
+                                            {assignment.date_available.split("-")[2]} at 12:00am | <b>Due </b> 
                                             {assignment.due_date.split("-")[1] + " "} 
                                             {assignment.due_date.split("-")[2]} at 11:59pm | 
                                             {assignment.points} pts
                                         </div>
 
                                         <div className="col-1">
-                                            <AssignmentControlButtons aid={assignment._id}/>    
+                                            <AssignmentControlButtons aid={assignment._id} deleteAssignment={removeAssignment}/>    
                                         </div>
 
                                     </div>

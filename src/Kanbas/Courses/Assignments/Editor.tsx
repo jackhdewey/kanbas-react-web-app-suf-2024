@@ -8,7 +8,6 @@ export default function AssignmentEditor() {
 
     const { cid, aid } = useParams();
     const { assignments } = useSelector((state: any) => state.assignmentsReducer);
-
     let assignment = assignments.find((a: any) => a._id === aid);
     let isNew = false;
     if (!assignment) {
@@ -26,10 +25,12 @@ export default function AssignmentEditor() {
     const [ a, updateA ] = useState<any>(assignment);
 
     const dispatch = useDispatch();
+
     const newAssignment = async (assignment: any) => {
         const newAssignment = await client.createAssignment(cid as string, assignment);
         dispatch(addAssignment(newAssignment));
     }
+
     const saveAssignment = async (assignment: any) => {
         await client.updateAssignment(assignment)
         dispatch(updateAssignment(assignment));
@@ -195,7 +196,7 @@ export default function AssignmentEditor() {
                     id="wd-save" 
                     className="btn btn-danger float-end" 
                     onClick={
-                        isNew? () => {newAssignment(a)} : () => {saveAssignment(a)}}>
+                        isNew? () => { newAssignment(a) } : () => { saveAssignment(a) }}>
                     Save
                 </Link>  
 

@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 
-export default function AssignmentControls({cid, aid}: {cid: string; aid: string; }) {
+export default function AssignmentControls({ cid }: { cid: string }) {
+
+    const newAssignmentId = `A${new Date().getTime().toString()}`;
+ 
     return (
       <div id="wd-assignment-controls" className="text-nowrap">
           <div>
@@ -16,16 +19,18 @@ export default function AssignmentControls({cid, aid}: {cid: string; aid: string
               </input>
           </div>
 
-          <Link 
-                id="wd-add-assignment" 
-                key={`/Kanbas/Courses/${cid}/Assignments/${aid}`} 
-                to={`/Kanbas/Courses/${cid}/Assignments/${aid}`}
+          <Link id="wd-add-assignment" 
+                key={`/Kanbas/Courses/${cid}/Assignments/${newAssignmentId}`} 
+                to={`/Kanbas/Courses/${cid}/Assignments/${newAssignmentId}`}
                 className="btn btn-lg btn-danger me-1 float-end">
+
                 <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                 Assignment
           </Link>
 
-          <button id="wd-add-assignment-group" className="btn btn-lg btn-secondary me-1 float-end">
+          <button id="wd-add-assignment-group" 
+              className="btn btn-lg btn-secondary me-1 float-end">
+
               <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
               Group
           </button>

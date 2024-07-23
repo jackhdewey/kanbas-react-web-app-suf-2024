@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { BsGripVertical } from "react-icons/bs";
+
 import ModuleControls from "./ModuleControls";
 import ModuleControlButtons from "./ModuleControlButtons";
 import LessonControlButtons from "./LessonControlButtons";
@@ -33,7 +34,7 @@ export default function Modules() {
         dispatch(deleteModule(moduleId));
     }
     const saveModule = async (module: any) => {
-        const status = await client.updateModule(module);
+        await client.updateModule(module);
         dispatch(updateModule(module));
     }
     
@@ -43,12 +44,10 @@ export default function Modules() {
             <ModuleControls 
                 moduleName={moduleName} 
                 setModuleName={setModuleName} 
-                addModule={
-                    () => {
-                        createModule({name: moduleName, course: cid }); 
-                        setModuleName(""); 
-                    }
-                } /> 
+                addModule={() => {
+                    createModule({name: moduleName, course: cid }); 
+                    setModuleName(""); 
+                }} /> 
             
             <br /><br /><br />
           
@@ -61,8 +60,9 @@ export default function Modules() {
                               <div className="wd-title p-3 ps-2 bg-secondary">
                                     <BsGripVertical className="me-2 fs-3" />
 
-                                    { !module.editing ? module.name
-                                    : (
+                                    { !module.editing ? 
+                                        module.name : 
+                                        (
                                         <input className="form-control w-50 d-inline-block" 
                                             value={module.name}
                                             onChange={(e) => saveModule({...module, name: e.target.value})}
@@ -77,7 +77,8 @@ export default function Modules() {
                                     <ModuleControlButtons 
                                         moduleId={module._id} 
                                         deleteModule={(moduleId) => {removeModule(moduleId)}} 
-                                        editModule={(moduleId) => {dispatch(editModule(moduleId))}}/>
+                                        editModule={(moduleId) => {dispatch(editModule(moduleId))}}
+                                    />
                               </div>
 
                               {module.lessons && (
