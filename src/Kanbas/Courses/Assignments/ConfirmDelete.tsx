@@ -10,7 +10,7 @@ export default function ConfirmDelete({ dialogTitle, aid, removeAssignment } : {
             <div className="modal-dialog">
                 <div className="modal-content">
 
-                    <div className="modal-header">
+                    <div className="modal-header"  onClick={() => console.log(aid)}>
                         <h1 
                             className="modal-title fs-5" 
                             id="staticBackdropLabel">
@@ -36,7 +36,10 @@ export default function ConfirmDelete({ dialogTitle, aid, removeAssignment } : {
                         </button>
                         <button 
                             type="button"
-                            onClick={() => removeAssignment(aid)}  
+                            onClick={() => {
+                                console.log(aid);
+                                removeAssignment(aid);
+                            }}
                             className="btn btn-danger"
                             data-bs-dismiss="modal">
                             Ok 

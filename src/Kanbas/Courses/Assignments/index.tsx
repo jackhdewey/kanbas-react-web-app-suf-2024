@@ -77,7 +77,9 @@ export default function Assignments() {
                                         </div>
 
                                         <div className="col-1">
-                                            <AssignmentControlButtons aid={assignment._id} deleteAssignment={removeAssignment}/>    
+                                            <AssignmentControlButtons 
+                                                aid={assignment._id} 
+                                                deleteAssignment={removeAssignment}/>    
                                         </div>
 
                                     </div>
