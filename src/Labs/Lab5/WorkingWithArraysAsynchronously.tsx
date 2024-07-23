@@ -77,8 +77,8 @@ export default function WorkingWithArraysAsynchronously() {
             </h4>
 
             <ul className="list-group">
-                {todos.map((todo) => (
 
+                {todos.map((todo) => (
                 <li key={todo.id} className="list-group-item">
 
                     <FaTrash onClick={() => removeTodo(todo)} className="text-danger float-end mt-1 me-2" id="wd-remove-todo"/>
@@ -87,17 +87,17 @@ export default function WorkingWithArraysAsynchronously() {
                     
                     {!todo.editing ? 
                         (
-                            <div>
-                                <input type="checkbox" className="form-check-input me-2"
-                                    defaultChecked={todo.completed} onChange={(e) => updateTodo({...todo, completed: e.target.checked }) }/>
-                                <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
-                                    {todo.title}
-                                </span> 
-                            </div>
-         
-                        ) : 
-                        (
-                        <input className="form-control w-50 float-start" defaultValue={todo.title}  
+                        <div>
+                            <input type="checkbox" className="form-check-input me-2"
+                                defaultChecked={todo.completed} 
+                                onChange={(e) => updateTodo({...todo, completed: e.target.checked }) }/>
+                            <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
+                                {todo.title}
+                            </span> 
+                        </div>
+                        ) : (
+                        <input className="form-control w-50 float-start" 
+                            defaultValue={todo.title}  
                             onKeyDown={(e) => {
                                 if (e.key === "Enter") {
                                     updateTodo({ ...todo, editing: false });

@@ -1,5 +1,6 @@
 import axios from "axios";
- 
+
+
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 
 export const fetchWelcomeMessage = async () => {
@@ -52,8 +53,3 @@ export const updateTodo = async (todo: any) => {
     const response = await axios.put(`${TODOS_API}/${todo.id}`, todo);
     return response.data;
 };
-  
-  
-  
-  
-  
