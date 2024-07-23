@@ -8,7 +8,6 @@ export default function WorkingWithArraysAsynchronously() {
     
     const [ errorMessage, setErrorMessage ] = useState(null);
     
-    
     const [todos, setTodos] = useState<any[]>([]);
     const fetchTodos = async () => {
         const todos = await client.fetchTodos();
@@ -27,7 +26,6 @@ export default function WorkingWithArraysAsynchronously() {
         const updatedTodos = await client.removeTodo(todo);
         setTodos(updatedTodos);
     };
-
 
     const postTodo = async () => {
         const newTodo = await client.postTodo({ title: "New Posted Todo", completed: false, });
