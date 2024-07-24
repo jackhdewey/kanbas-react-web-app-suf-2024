@@ -3,18 +3,18 @@ export default function ConfirmDelete({ dialogTitle, aid, removeAssignment } : {
     aid: string; 
     removeAssignment: (id: string) => void;
 }) {
-    
+
     return (
         <div id="wd-add-module-dialog" className="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
 
             <div className="modal-dialog">
                 <div className="modal-content">
 
-                    <div className="modal-header"  onClick={() => console.log(aid)}>
+                    <div className="modal-header" onClick={() => console.log(aid)}>
                         <h1 
                             className="modal-title fs-5" 
                             id="staticBackdropLabel">
-                            {dialogTitle} 
+                            {dialogTitle} {aid}
                         </h1>
                         <button 
                             type="button" 
