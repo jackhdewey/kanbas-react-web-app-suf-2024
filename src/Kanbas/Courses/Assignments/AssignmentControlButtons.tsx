@@ -1,6 +1,6 @@
 import { IoEllipsisVertical } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa"
-// import GreenCheckmark from "../Modules/GreenCheckmark";
+import GreenCheckmark from "../Modules/GreenCheckmark";
 // import ConfirmDelete from "./ConfirmDelete";
 
 
@@ -21,7 +21,7 @@ export default function AssignmentControlButtons({aid, deleteAssignment} : {
             }
             
             className="text-danger me-2 mb-1" />
-            {/* <GreenCheckmark /> */}
+            <GreenCheckmark />
             <IoEllipsisVertical className="fs-4" />
         
             {/* <ConfirmDelete 
