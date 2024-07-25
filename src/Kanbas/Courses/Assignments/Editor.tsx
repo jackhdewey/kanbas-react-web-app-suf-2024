@@ -1,20 +1,26 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addAssignment } from "./reducer";
 
 export default function AssignmentEditor() {
     const dispatch = useDispatch();
     const { cid, aid } = useParams();
-    const [ a, updateAssignment ] = useState<any>({ 
-        "_id": aid, 
-        "title": "New Assignment",    
-        "course": cid, 
-        "date_available": "2024-06-24", 
-        "due_date":"2024-06-24", 
-        "points":"100", 
-        "description":"a test of your knowledge"
-    });
+    const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+    let assignment = assignments.filter((a: any) => (a._id === aid))[0];
+    if (!assignment) {
+        assignment = {
+            "_id": aid, 
+            "title": "New Assignment",    
+            "course": cid, 
+            "date_available": "2024-06-24", 
+            "due_date":"2024-06-24",
+            "available_until": "2024-06-24", 
+            "points":"100", 
+            "description":"a test of your knowledge"
+        }
+    }
+    const [ a, updateAssignment ] = useState<any>(assignment);
 
     return (
 
