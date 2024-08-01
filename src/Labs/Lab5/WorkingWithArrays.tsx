@@ -17,7 +17,9 @@ export default function WorkingWithArrays() {
             <h3>Working with Arrays</h3>
 
             <h4>Retrieving Arrays</h4>
-            <a id="wd-retrieve-todos" className="btn btn-primary" href={API}> Get Todos </a><hr/>
+            <a id="wd-retrieve-todos" className="btn btn-primary" 
+                href={API}> Get Todos </a>
+            <hr/>
 
             <h4>Retrieving an Item from an Array by ID</h4>
             <a id="wd-retrieve-todo-by-id" className="btn btn-primary float-end" 
@@ -29,11 +31,13 @@ export default function WorkingWithArrays() {
 
             <h3>Filtering Array Items</h3>
             <a id="wd-retrieve-completed-todos" className="btn btn-primary" 
-                href={`${API}?completed=true`}> Get Completed Todos </a><hr/>
+                href={`${API}?completed=true`}> Get Completed Todos </a>
+            <hr/>
 
             <h3>Creating new Items in an Array</h3>
             <a id="wd-retrieve-completed-todos" className="btn btn-primary"
-                href={`${API}/create`}> Create Todo </a><hr/>
+                href={`${API}/create`}> Create Todo </a>
+            <hr/>
 
             <h3>Deleting from an Array</h3>
             <a id="wd-retrieve-completed-todos" className="btn btn-primary float-end" 
@@ -45,11 +49,11 @@ export default function WorkingWithArrays() {
 
             <h3>Updating an Item in an Array</h3>
             <a href={`${API}/${todo.id}/title/${todo.title}`} 
-                className="btn btn-primary float-end">Update Todo</a>
+                className="btn btn-primary float-end"> Update Todo </a>
             <input value={todo.id} onChange={(e) => setTodo({ ...todo, id: e.target.value })}
-                    className="form-control w-25 float-start me-2"/>
+                className="form-control w-25 float-start me-2"/>
             <input value={todo.title} onChange={(e) => setTodo({ ...todo, title: e.target.value })}
-                    className="form-control w-50 float-start"/>
+                className="form-control w-50 float-start"/>
             <br /><br />
 
             <a href={`${API}/${todo.id}/description/${todo.description}`} 
@@ -60,12 +64,13 @@ export default function WorkingWithArrays() {
                 onChange={(e) => setTodo({ ...todo, description: e.target.value }) }/>
             <br /><br />
 
-            <a href={`${API}/${todo.id}/completed/${todo.completed}`} className="btn btn-primary float-end">Complete Todo</a>
+            <a href={`${API}/${todo.id}/completed/${todo.completed}`} 
+                className="btn btn-primary float-end">Complete Todo</a>
             <input className="form-control w-25 float-start me-2"
                 value={todo.id} 
                 onChange={(e) => setTodo({ ...todo, id: e.target.value })}/>
-            <input type="checkbox" className="form-check-input float-start"
-                checked={todo.completed} 
+            <input className="form-check-input float-start"
+                type="checkbox" checked={todo.completed} 
                 onChange={(e) => setTodo({ ...todo, completed: e.target.checked }) }/>
             <br /><br /><hr />
 
