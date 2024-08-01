@@ -11,9 +11,9 @@ export default function QueryParameters() {
             <h3>Query Parameters</h3>
 
             <input id="wd-query-parameter-a" className="form-control mb-2"
-                    value={a} type="number" onChange={(e) => setA(e.target.value)} />
+                value={a} type="number" onChange={(e) => setA(e.target.value)} />
             <input id="wd-query-parameter-b" className="form-control mb-2"
-                    value={b} type="number" onChange={(e) => setB(e.target.value)} />
+                value={b} type="number" onChange={(e) => setB(e.target.value)} />
 
             <a id="wd-query-parameter-add" className="btn btn-primary me-2"
                 href={`${REMOTE_SERVER}/lab5/calculator?operation=add&a=${a}&b=${b}`}>
@@ -31,8 +31,8 @@ export default function QueryParameters() {
                 href={`${REMOTE_SERVER}/lab5/calculator?operation=divide&a=${a}&b=${b}`}>
                 Divide {a} / {b}
             </a>
-
             <hr />
+            
         </div>
     );
 }
