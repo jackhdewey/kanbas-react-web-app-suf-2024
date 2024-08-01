@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FaTrash,  FaPlusCircle } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { TiDelete } from "react-icons/ti";

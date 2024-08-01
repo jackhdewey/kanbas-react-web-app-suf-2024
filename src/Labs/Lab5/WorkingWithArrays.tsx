@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 
 export default function WorkingWithArrays() {
 
     const API = `${REMOTE_SERVER}/lab5/todos`;
+
     const [todo, setTodo ] = useState({
         id: "1", 
         title: "NodeJS Assignment",
@@ -48,24 +49,28 @@ export default function WorkingWithArrays() {
             <hr/>
 
             <h3>Updating an Item in an Array</h3>
-            <a href={`${API}/${todo.id}/title/${todo.title}`} 
-                className="btn btn-primary float-end"> Update Todo </a>
-            <input value={todo.id} onChange={(e) => setTodo({ ...todo, id: e.target.value })}
-                className="form-control w-25 float-start me-2"/>
-            <input value={todo.title} onChange={(e) => setTodo({ ...todo, title: e.target.value })}
-                className="form-control w-50 float-start"/>
+            <a className="btn btn-primary float-end"
+                href={`${API}/${todo.id}/title/${todo.title}`}> Update Todo </a>
+            <input className="form-control w-25 float-start me-2"
+                value={todo.id} 
+                onChange={(e) => setTodo({ ...todo, id: e.target.value })}/>
+            <input className="form-control w-50 float-start"
+                value={todo.title} 
+                onChange={(e) => setTodo({ ...todo, title: e.target.value })}/>
             <br /><br />
 
-            <a href={`${API}/${todo.id}/description/${todo.description}`} 
-                className="btn btn-primary float-end">Describe Todo</a>
-            <input value={todo.id} className="form-control w-25 float-start me-2"
+            <a className="btn btn-primary float-end"
+                href={`${API}/${todo.id}/description/${todo.description}`}>Describe Todo</a>
+            <input className="form-control w-25 float-start me-2"
+                value={todo.id} 
                 onChange={(e) => setTodo({ ...todo, id: e.target.value })}/>
-            <input value={todo.description} className="form-control w-50 float-start"
+            <input className="form-control w-50 float-start"
+                value={todo.description} 
                 onChange={(e) => setTodo({ ...todo, description: e.target.value }) }/>
             <br /><br />
 
-            <a href={`${API}/${todo.id}/completed/${todo.completed}`} 
-                className="btn btn-primary float-end">Complete Todo</a>
+            <a className="btn btn-primary float-end"
+                href={`${API}/${todo.id}/completed/${todo.completed}`}>Complete Todo</a>
             <input className="form-control w-25 float-start me-2"
                 value={todo.id} 
                 onChange={(e) => setTodo({ ...todo, id: e.target.value })}/>
