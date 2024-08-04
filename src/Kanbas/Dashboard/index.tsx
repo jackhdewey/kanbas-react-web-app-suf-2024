@@ -13,7 +13,9 @@ export default function Dashboard(
     return (
         <div id="wd-dashboard">
 
-            <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+            <h1 id="wd-dashboard-title">Dashboard</h1>
+
+            <hr />
 
             <h5>
                 New Course
@@ -22,14 +24,20 @@ export default function Dashboard(
                 <button id="wd-update-course-click" onClick={updateCourse}
                     className="btn btn-warning float-end me-2">Update</button>
             </h5> 
+
             <hr/>
 
-            <input className="form-control mb-2" 
+            <input 
+                className="form-control mb-2" 
                 value={course.name} 
-                onChange={(e) => setCourse({...course, name: e.target.value})}></input>
-            <textarea className="form-control" 
+                onChange={(e) => setCourse({...course, name: e.target.value})}>
+            </input>
+            <textarea 
+                className="form-control" 
                 value={course.description} 
-                onChange={(e) => setCourse({...course, description: e.target.value})}></textarea>
+                onChange={(e) => setCourse({...course, description: e.target.value})}>
+            </textarea>
+
             <hr />
 
             <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> 

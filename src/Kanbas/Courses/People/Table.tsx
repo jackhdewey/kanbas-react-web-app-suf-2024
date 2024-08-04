@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as client from "./client";
+
 export default function PeopleTable() {
     const [ users, setUsers ] = useState<any[]>([]);
     const fetchUsers = async () => {
@@ -10,8 +11,28 @@ export default function PeopleTable() {
         fetchUsers();
     }, []);
 
+    const [role, setRole] = useState("");
+    const filterUsersByRole = async (role: string) => {
+      setRole(role);
+      if (role) {
+        const users = await client.findUsersByRole(role);
+        setUsers(users);
+      } else {
+        fetchUsers();
+      }
+    };  
+
     return (
         <div id = "wd-people-table">
+
+            <select value={role} onChange={(e) =>filterUsersByRole(e.target.value)}
+                    className="form-select float-start w-25 wd-select-role" >
+                <option value="">All Roles</option>        
+                <option value="STUDENT">Students</option>
+                <option value="TA">Assistants</option>     
+                <option value="FACULTY">Faculty</option>
+            </select>
+
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -23,7 +44,13 @@ export default function PeopleTable() {
                         <tr key={user._id}>
                             <td className="wd-full-name text-nowrap">
                                 <span className="wd-first-name">{user.firstName}</span>
+                                <span className="wd-last-name">{" " + user.lastName}</span>
                             </td>
+                            <td className="wd-login-id">{user.loginId}</td>
+                            <td className="wd-section">{user.section}</td>
+                            <td className="wd-role">{user.role}</td>
+                            <td className="wd-last-activity">{user.lastActivity}</td>
+                            <td className="wd-total-activity">{user.totalActivity}</td>
                         </tr>
                     ))}
                 </tbody>
