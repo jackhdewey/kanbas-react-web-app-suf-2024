@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { FaPlus } from "react-icons/fa";
 import * as client from "./client";
 import PeopleDetails from "./Details";
 
@@ -37,12 +38,29 @@ export default function PeopleTable() {
         fetchUsers();
       }
     };
-  
+
+    const createUser = async () => {
+        const user = await client.createUser({
+            firstName: "New",
+            lastName: `User${users.length + 1}`,
+            username:`newuser${Date.now()}`,
+            password: "passowrd123",
+            section: "S101",
+            role: "STUDENT",
+        });
+        setUsers([...users, user]);
+    }
 
     return (
         <div id = "wd-people-table">
 
-            <PeopleDetails />
+            <PeopleDetails fetchUsers={fetchUsers}/>
+
+            <button className="float-end btn btn-danger wd-add-people" onClick={createUser}>
+                <FaPlus className="me-2"/>
+                People
+            </button>
+
 
             <input placeholder="Search People" 
                 onChange={(e) => filterUsersByName(e.target.value)}
@@ -65,7 +83,6 @@ export default function PeopleTable() {
                 <tbody>
                     {users.map((user: any) => (
                         <tr key={user._id}>
-
                             <td className="wd-full-name text-nowrap">
                                 <Link to={`/Kanbas/Courses/${cid}/People/${user._id}`}>
                                     <span className="wd-first-name">{user.firstName}</span>{" "}
