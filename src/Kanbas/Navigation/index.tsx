@@ -22,7 +22,7 @@ export default function KanbasNavigation() {
                 <img src="images/northeastern.png" width="75px"/>
             </a>
            
-            <Link key="/Kanbas/Account" to="Kanbas/Account" className={`list-group-item border-0 text-center ${pathname.includes("Account") ? "bg-white text-danger" : "bg-black text-white"}`}>
+            <Link key="/Kanbas/Account" to="/Kanbas/Account" className={`list-group-item border-0 text-center ${pathname.includes("Account") ? "bg-white text-danger" : "bg-black text-white"}`}>
                 <FaRegCircleUser className={`fs-1 ${pathname.includes("Account") ? "text-danger" : "text-white"}`} /><br />
                 Account
             </Link>

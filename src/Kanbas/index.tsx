@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
 import { Routes, Route, Navigate } from "react-router";
 
+import Account from "./Account";
 import KanbasNavigation from "./Navigation";
 import Dashboard from "./Dashboard"
 import Courses from "./Courses";
 import * as client from "./Courses/client";
 import store from "./store";
 import "./styles.css";
+
 
 export default function Kanbas() {
 
@@ -68,7 +70,7 @@ export default function Kanbas() {
                     <div className="flex-fill p-4">
                         <Routes>
                             <Route path="/" element={<Navigate to="Dashboard"/>}/>
-                            <Route path="Account" element={<h1>Account</h1>}/>
+                            <Route path="Account/*" element={<Account />}/>
                             <Route path="Dashboard" element={<Dashboard 
                                                                 courses={courses}
                                                                 course={course}
