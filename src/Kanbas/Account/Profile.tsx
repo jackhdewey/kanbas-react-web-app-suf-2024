@@ -1,19 +1,28 @@
-import * as client from "./client";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setCurrentUser } from "./reducer";
+import * as client from "./client";
 
 export default function Profile() {
 
   const [profile, setProfile] = useState<any>({});
   const fetchProfile = async () => {
-    const account = await client.profile();
-    setProfile(account);
+    try {
+        const account = await client.profile();
+        setProfile(account);
+    } catch (err: any) {
+        navigate("/Kanbas/Account/Signin");
+    }
+
   };
   useEffect(() => { fetchProfile(); }, []);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const signout = async () => {
     await client.signout();
+    dispatch(setCurrentUser(null));
     navigate("/Kanbas/Account/Signin");
   };
 
