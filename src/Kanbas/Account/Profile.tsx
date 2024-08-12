@@ -14,7 +14,6 @@ export default function Profile() {
     } catch (err: any) {
         navigate("/Kanbas/Account/Signin");
     }
-
   };
   useEffect(() => { fetchProfile(); }, []);
 

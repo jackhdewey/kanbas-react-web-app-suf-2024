@@ -1,4 +1,10 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import FacultyRoute from "../FacultyRoute";
+import DashboardControls from "./DashboardControls";
+import StudentRoute from "../StudentRoute";
+import CourseEnrollment from "./Enrollment";
+import * as userClient from "../Account/client";
 
 export default function Dashboard( 
     { courses, course, setCourse, addNewCourse, deleteCourse, updateCourse } : {
@@ -10,6 +16,17 @@ export default function Dashboard(
         updateCourse: () => void; })
     {
 
+    const [profile, setProfile] = useState<any>({});
+    const fetchProfile = async () => {
+        const account = await userClient.profile();
+        setProfile(account);
+    };
+    useEffect(() => { fetchProfile(); }, []);
+
+    const enroll = async () => {
+
+    }
+
     return (
         <div id="wd-dashboard">
 
@@ -17,26 +34,17 @@ export default function Dashboard(
 
             <hr />
 
-            <h5>
-                New Course
-                <button id="wd-add-new-course-click" onClick={addNewCourse}
-                    className="btn btn-primary float-end">Add</button>
-                <button id="wd-update-course-click" onClick={updateCourse}
-                    className="btn btn-warning float-end me-2">Update</button>
-            </h5> 
+            <FacultyRoute>
+                <DashboardControls course={course} 
+                                    setCourse={setCourse}
+                                    addNewCourse={addNewCourse}
+                                    updateCourse={updateCourse}
+                                    />
+            </FacultyRoute>
 
-            <hr/>
-
-            <input 
-                className="form-control mb-2" 
-                value={course.name} 
-                onChange={(e) => setCourse({...course, name: e.target.value})}>
-            </input>
-            <textarea 
-                className="form-control" 
-                value={course.description} 
-                onChange={(e) => setCourse({...course, description: e.target.value})}>
-            </textarea>
+            <StudentRoute>
+                <CourseEnrollment courses={courses} profile={profile} />
+            </StudentRoute>
 
             <hr />
 
@@ -44,7 +52,7 @@ export default function Dashboard(
             <hr />
             <div id="wd-dashboard-courses" className="row">
                 <div className="row row-cols-1 row-cols-md-5 g-4">
-                    {courses.map((course) => 
+                    {courses.filter((course: any) => course.students.includes(profile._id)).map((course) => 
                         (
                             <div className="wd-dashboard-course col" style={{ width: "320px"}}>
 
@@ -69,6 +77,7 @@ export default function Dashboard(
                                                 Go 
                                             </Link>
                                             
+                                            <FacultyRoute>
                                             <button id="wd-delete-course-click" 
                                                 onClick={
                                                     (e) => {
@@ -89,6 +98,7 @@ export default function Dashboard(
                                                 className="btn btn-warning me-2 float-end"> 
                                                 Edit 
                                             </button>
+                                            </FacultyRoute>
 
                                         </div>
 

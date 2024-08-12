@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
 import { Routes, Route, Navigate } from "react-router";
-
 import ProtectedRoute from "./ProtectedRoute";
 import Account from "./Account";
 import KanbasNavigation from "./Navigation";
@@ -10,7 +9,6 @@ import Courses from "./Courses";
 import * as client from "./Courses/client";
 import store from "./store";
 import "./styles.css";
-
 
 export default function Kanbas() {
 
