@@ -1,22 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as courseClient from "../Account/client";
 
-export default function CourseEnrollment({ courses, profile } : { courses: any[], profile: any }) {
+export default function CourseEnrollment({ courses, setCourse, profile } : { courses: any[], setCourse: (course: any) => void, profile: any }) {
 
     const [ display, setDisplay ] = useState(false);
     const displayCourses = () => {
         setDisplay(!display);
     };
 
-    const { currentUser } = useSelector((state: any) => state.accountReducer);
-    const addCourseToUser = () => {
-
-    };
-    const addUserToCourse = (courseId: string) => {
-        
-    };
+    const addUserToCourse = async (course: any) => {
+        if (!course.students.includes(profile.username)) {
+            course.students = [...course.students, profile.username]
+            setCourse(course);
+        } 
+    }
 
     return (<div>            
         <h5>
@@ -32,31 +31,28 @@ export default function CourseEnrollment({ courses, profile } : { courses: any[]
                     (
                         <div className="wd-dashboard-course col" style={{ width: "320px"}}>
 
-                            <Link to={`/Kanbas/Courses/${course._id}`} 
-                                className="text-decoration-none">
-                                <div className="card rounded-3 overflow-hidden">
+                            <div className="card rounded-3 overflow-hidden">
 
-                                    <img src={course.image} height="{160}"/>
+                                <img src={course.image} height="{160}"/>
 
-                                    <div className="card-body">
+                                <div className="card-body">
 
-                                        <span className="wd-dashboard-course-link" 
-                                            style={{ textDecoration: "none", color: "navy", fontWeight: "bold"}}> 
-                                            {course.name} 
-                                        </span>
-                                        <p className="wd-dashboard-course-title card-text" 
-                                            style={{ maxHeight: 53, overflow: "hidden" }}> {course.description} 
-                                        </p>
+                                    <span className="wd-dashboard-course-link" 
+                                        style={{ textDecoration: "none", color: "navy",fontWeight: "bold"}}> 
+                                        {course.name} 
+                                    </span>
+                                    <p className="wd-dashboard-course-title card-text" 
+                                        style={{ maxHeight: 53, overflow: "hidden" }}>{course.description} 
+                                    </p>
 
-                                        <button onClick={currentUser.courses} 
-                                            className="btn btn-primary"> 
-                                            Enroll
-                                        </button>
-
-                                    </div>
+                                    <button onClick={() => addUserToCourse(course)} 
+                                        className="btn btn-primary"> 
+                                        Enroll
+                                    </button>
 
                                 </div>
-                            </Link>
+
+                            </div>
 
                         </div>
                     ))

@@ -7,52 +7,56 @@ import CourseEnrollment from "./Enrollment";
 import * as userClient from "../Account/client";
 
 export default function Dashboard( 
-    { courses, course, setCourse, addNewCourse, deleteCourse, updateCourse } : {
+    { courses, setCourses, course, setCourse, deleteCourse, updateCourse } : {
         courses: any[]; 
+        setCourses: (courses: any[]) => void;
         course: any; 
         setCourse: (course: any) => void; 
-        addNewCourse: () => void; 
         deleteCourse: (course: any) => void; 
         updateCourse: () => void; })
     {
 
     const [profile, setProfile] = useState<any>({});
+    const [displayCourses, setDisplayCourses] = useState(courses);
     const fetchProfile = async () => {
         const account = await userClient.profile();
         setProfile(account);
     };
-    useEffect(() => { fetchProfile(); }, []);
-
-    const enroll = async () => {
-
-    }
+    useEffect(() => { 
+        fetchProfile(); 
+        if (profile.role == "STUDENT") {
+            setDisplayCourses(courses.filter((course) => course.students.includes(profile.username)));
+        } else {
+            setDisplayCourses(courses.filter((course) => course.professor === profile.username));
+        }
+    }, []);
 
     return (
         <div id="wd-dashboard">
 
             <h1 id="wd-dashboard-title">Dashboard</h1>
-
             <hr />
 
             <FacultyRoute>
-                <DashboardControls course={course} 
+                <DashboardControls profile={profile}
+                                    course={course} 
                                     setCourse={setCourse}
-                                    addNewCourse={addNewCourse}
-                                    updateCourse={updateCourse}
-                                    />
+                                    courses={courses}
+                                    setCourses={setCourses}
+                                    updateCourse={updateCourse} />
             </FacultyRoute>
 
             <StudentRoute>
-                <CourseEnrollment courses={courses} profile={profile} />
+                <CourseEnrollment profile={profile} courses={courses} setCourse={setCourse} />
             </StudentRoute>
 
             <hr />
 
-            <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> 
+            <h2 id="wd-dashboard-published">Published Courses ({displayCourses.length})</h2> 
             <hr />
             <div id="wd-dashboard-courses" className="row">
                 <div className="row row-cols-1 row-cols-md-5 g-4">
-                    {courses.filter((course: any) => course.students.includes(profile._id)).map((course) => 
+                    {displayCourses.map((course: any) => 
                         (
                             <div className="wd-dashboard-course col" style={{ width: "320px"}}>
 

@@ -33,11 +33,6 @@ export default function Kanbas() {
         credits: 4,
         description: "New Description"});
 
-    const addNewCourse = async () => {
-        const newCourse = await client.createCourse(course);
-        setCourses([ ...courses, newCourse]);
-    };
-
     const deleteCourse = async (courseId: string) => {
         const response = await client.deleteCourse(courseId);
         setCourses(courses.filter((c) => c._id !== courseId));
@@ -73,9 +68,9 @@ export default function Kanbas() {
                             <Route path="Dashboard" element={<ProtectedRoute>
                                                             <Dashboard 
                                                                 courses={courses}
+                                                                setCourses={setCourses}
                                                                 course={course}
                                                                 setCourse={setCourse}
-                                                                addNewCourse={addNewCourse}
                                                                 deleteCourse={deleteCourse}
                                                                 updateCourse={updateCourse}/>
                                                             </ProtectedRoute>
