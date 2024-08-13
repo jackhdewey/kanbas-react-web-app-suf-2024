@@ -1,35 +1,52 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import FacultyRoute from "../FacultyRoute";
 import DashboardControls from "./DashboardControls";
 import StudentRoute from "../StudentRoute";
 import CourseEnrollment from "./Enrollment";
+import * as courseClient from "../Courses/client";
 import * as userClient from "../Account/client";
+import { Link } from "react-router-dom";
 
 export default function Dashboard( 
-    { courses, setCourses, course, setCourse, deleteCourse, updateCourse } : {
+    { profile, setProfile, courses, setCourses} : {
+        profile: any;
+        setProfile: (profile: any) => void;
         courses: any[]; 
-        setCourses: (courses: any[]) => void;
-        course: any; 
-        setCourse: (course: any) => void; 
-        deleteCourse: (course: any) => void; 
-        updateCourse: () => void; })
+        setCourses: (courses: any[]) => void;})
     {
 
-    const [profile, setProfile] = useState<any>({});
-    const [displayCourses, setDisplayCourses] = useState(courses);
-    const fetchProfile = async () => {
-        const account = await userClient.profile();
-        setProfile(account);
-    };
-    useEffect(() => { 
-        fetchProfile(); 
+    const [activeCourses, setActiveCourses] = useState(courses);
+    const selectActiveCourses = async () => {
+
         if (profile.role == "STUDENT") {
-            setDisplayCourses(courses.filter((course) => course.students.includes(profile.username)));
+            setActiveCourses(courses.filter((course) => course.students.includes(profile.username)));
         } else {
-            setDisplayCourses(courses.filter((course) => course.professor === profile.username));
+            setActiveCourses(courses.filter((course) => course.author === profile.username));
         }
-    }, []);
+    };
+    useEffect(() => {
+        console.log(profile);
+        selectActiveCourses();
+    }, [])
+    
+    const [course, setCourse] = useState<any>({
+            _id: "0", 
+            name: "New Course", 
+            number: "New Number", 
+            author: profile.username,
+            students: [],
+            image: "/images/reactjs.jpg", 
+            startDate: "2023-09-10", 
+            endDate: "2023-12-15", 
+            department: "Department", 
+            credits: 4,
+            description: "New Description"},
+    );
+
+    const deleteCourse = async (courseId: string) => {
+        await courseClient.deleteCourse(courseId);
+        setCourses(courses.filter((c) => c._id !== courseId));
+    };
 
     return (
         <div id="wd-dashboard">
@@ -38,25 +55,26 @@ export default function Dashboard(
             <hr />
 
             <FacultyRoute>
-                <DashboardControls profile={profile}
-                                    course={course} 
-                                    setCourse={setCourse}
+                <DashboardControls  profile={profile}
                                     courses={courses}
                                     setCourses={setCourses}
-                                    updateCourse={updateCourse} />
+                                    course={course}
+                                    setCourse={setCourse}/>
             </FacultyRoute>
 
             <StudentRoute>
-                <CourseEnrollment profile={profile} courses={courses} setCourse={setCourse} />
+                <CourseEnrollment  profile={profile} 
+                                    courses={courses} />
             </StudentRoute>
 
             <hr />
 
-            <h2 id="wd-dashboard-published">Published Courses ({displayCourses.length})</h2> 
+            <div>
+            <h3 id="wd-dashboard-published">Active Courses ({activeCourses.length})</h3> 
             <hr />
             <div id="wd-dashboard-courses" className="row">
                 <div className="row row-cols-1 row-cols-md-5 g-4">
-                    {displayCourses.map((course: any) => 
+                    {activeCourses.map((course: any) => 
                         (
                             <div className="wd-dashboard-course col" style={{ width: "320px"}}>
 
@@ -113,6 +131,7 @@ export default function Dashboard(
                         ))
                     }
                 </div>
+            </div>
             </div>
 
         </div>

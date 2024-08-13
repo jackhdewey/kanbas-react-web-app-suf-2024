@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import * as courseClient from "../Account/client";
+import { useState } from "react";
+import * as client from "../Courses/client";
 
-export default function CourseEnrollment({ courses, setCourse, profile } : { courses: any[], setCourse: (course: any) => void, profile: any }) {
+export default function CourseEnrollment(
+    { profile, courses } : { 
+        courses: any[],
+        profile: any }) 
+    {
 
     const [ display, setDisplay ] = useState(false);
     const displayCourses = () => {
@@ -13,16 +15,16 @@ export default function CourseEnrollment({ courses, setCourse, profile } : { cou
     const addUserToCourse = async (course: any) => {
         if (!course.students.includes(profile.username)) {
             course.students = [...course.students, profile.username]
-            setCourse(course);
         } 
+        const status = await client.updateCourse(course);
     }
 
     return (<div>            
-        <h5>
+        <h3>
             Browse Courses
             <button id="wd-add-new-course-click" onClick={displayCourses}
                 className="btn btn-primary float-end">Search</button>
-        </h5> 
+        </h3> 
 
         {display && 
             <div id="wd-dashboard-courses" className="row">
@@ -45,7 +47,9 @@ export default function CourseEnrollment({ courses, setCourse, profile } : { cou
                                         style={{ maxHeight: 53, overflow: "hidden" }}>{course.description} 
                                     </p>
 
-                                    <button onClick={() => addUserToCourse(course)} 
+                                    <button onClick={() => {
+                                        addUserToCourse(course);
+                                    }} 
                                         className="btn btn-primary"> 
                                         Enroll
                                     </button>

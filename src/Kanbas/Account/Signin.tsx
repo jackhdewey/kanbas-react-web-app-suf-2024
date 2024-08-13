@@ -3,9 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./reducer";
 import * as client from "./client";
-import userEvent from "@testing-library/user-event";
 
-export default function Signin() {
+export default function Signin({setProfile} : {setProfile: (profile: any) => void}) {
 
     const [error, setError] = useState("");
 
@@ -16,6 +15,8 @@ export default function Signin() {
         try {
             const currentUser = await client.signin(credentials);
             dispatch(setCurrentUser(currentUser));
+            const account = await client.profile();
+            setProfile(account);
             navigate("/Kanbas/Account/Profile");
         } catch (err: any) {
             setError(err.response.data.message);
@@ -29,8 +30,9 @@ export default function Signin() {
             <input id="wd-username" className="form-control mb-2" 
                 onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
                 value={credentials.username} placeholder="username" />
-            <input id="wd-password" onChange={(e) => setCredentials({ ...credentials, password: e.target.value }) }
-                value={credentials.password} className="form-control mb-2" placeholder="password" type="password" />
+            <input id="wd-password" className="form-control mb-2" 
+                type="password" value={credentials.password} placeholder="password"
+                onChange={(e) => setCredentials({ ...credentials, password: e.target.value }) }/>
             <button id="wd-signin-btn" onClick={signin} className="btn btn-primary w-100"> Sign in </button>
             <br />
             <Link id="wd-signup-link" to="/Kanbas/Account/Signup">Sign up</Link>

@@ -6,50 +6,31 @@ import Account from "./Account";
 import KanbasNavigation from "./Navigation";
 import Dashboard from "./Dashboard"
 import Courses from "./Courses";
-import * as client from "./Courses/client";
+import * as courseClient from "./Courses/client";
+import * as userClient from "./Account/client";
 import store from "./store";
 import "./styles.css";
 
 export default function Kanbas() {
 
+    const [profile, setProfile] = useState<any>({});
+    const fetchProfile = async () => {
+        const account = await userClient.profile();
+        setProfile(account); 
+    };
+    useEffect(() => {
+        fetchProfile();
+    }, []);
+
     const [courses, setCourses] = useState<any[]>([]);
 
     const fetchCourses = async() => {
-        const courses = await client.fetchAllCourses();
+        const courses = await courseClient.fetchAllCourses();
         setCourses(courses);
     };
     useEffect(() => {
         fetchCourses();
     }, []);
-
-    const [course, setCourse] = useState<any>({
-        _id: "0", 
-        name: "New Course", 
-        number: "New Number", 
-        image: "/images/reactjs.jpg", 
-        startDate: "2023-09-10", 
-        endDate: "2023-12-15", 
-        department: "Department", 
-        credits: 4,
-        description: "New Description"});
-
-    const deleteCourse = async (courseId: string) => {
-        const response = await client.deleteCourse(courseId);
-        setCourses(courses.filter((c) => c._id !== courseId));
-    };
-
-    const updateCourse = async () => {
-        await client.updateCourse(course);
-        setCourses(
-            courses.map((c) => {
-                if (c._id === course._id) {
-                    return course;
-                } else {
-                    return c;
-                }
-            })
-        );
-    };    
 
     return (
         <Provider store={store}>
@@ -64,15 +45,13 @@ export default function Kanbas() {
                     <div className="flex-fill p-4">
                         <Routes>
                             <Route path="/" element={<Navigate to="Dashboard"/>}/>
-                            <Route path="Account/*" element={<Account />}/>
+                            <Route path="Account/*" element={<Account setProfile={setProfile}/>}/>
                             <Route path="Dashboard" element={<ProtectedRoute>
                                                             <Dashboard 
+                                                                profile={profile}
+                                                                setProfile={setProfile}
                                                                 courses={courses}
-                                                                setCourses={setCourses}
-                                                                course={course}
-                                                                setCourse={setCourse}
-                                                                deleteCourse={deleteCourse}
-                                                                updateCourse={updateCourse}/>
+                                                                setCourses={setCourses}/>
                                                             </ProtectedRoute>
                                                             } />
                                                             

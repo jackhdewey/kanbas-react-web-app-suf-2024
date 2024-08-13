@@ -43,9 +43,10 @@ export default function Profile() {
           <input className="wd-email form-control w-25 mb-2" value={profile.email}
                  onChange={(e) => setProfile({ ...profile, email: e.target.value })}/>
           <select className="wd-role form-control w-25 mb-2" onChange={(e) => setProfile({ ...profile, role: e.target.value })}>
-            <option value="USER">User</option>            <option value="ADMIN">Admin</option>
-            <option value="FACULTY">Faculty</option>      <option value="STUDENT">Student</option>
+            <option value="USER">User</option>           <option value="ADMIN">Admin</option>
+            <option value="FACULTY">Faculty</option>     <option value="STUDENT">Student</option>
           </select>
+          <span>CURRENT ROLE: {profile.role}</span><hr/>
           <button onClick={signout} className="wd-signout-btn btn btn-danger w-25">
             Sign out
           </button>
