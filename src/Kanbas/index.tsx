@@ -49,7 +49,6 @@ export default function Kanbas() {
                             <Route path="Dashboard" element={<ProtectedRoute>
                                                             <Dashboard 
                                                                 profile={profile}
-                                                                setProfile={setProfile}
                                                                 courses={courses}
                                                                 setCourses={setCourses}/>
                                                             </ProtectedRoute>

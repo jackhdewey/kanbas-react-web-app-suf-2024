@@ -20,10 +20,12 @@ export default function Quizzes() {
     };
     useEffect(() => {
         fetchQuizzes();
+        console.log("Fetching Quizzes");
     }, []);
 
-    const { quizzes } = useSelector((state: any) => state.quizzesReducer);
-    console.log(quizzes);
+    const [ quizzes, setQuizzes1 ] = useState<any[]>([]); 
+    //const { quizzes } = useSelector((state: any) => state.quizzesReducer);
+    //console.log(quizzes);
 
     const removeQuiz = async (quizId: string) => {
         console.log(quizId);

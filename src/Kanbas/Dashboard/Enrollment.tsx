@@ -2,9 +2,10 @@ import { useState } from "react";
 import * as client from "../Courses/client";
 
 export default function CourseEnrollment(
-    { profile, courses } : { 
+    { profile, courses, setActiveCourses } : { 
         courses: any[],
-        profile: any }) 
+        profile: any 
+        setActiveCourses: (courses: any[]) => void}) 
     {
 
     const [ display, setDisplay ] = useState(false);
@@ -16,7 +17,8 @@ export default function CourseEnrollment(
         if (!course.students.includes(profile.username)) {
             course.students = [...course.students, profile.username]
         } 
-        const status = await client.updateCourse(course);
+        await client.updateCourse(course);
+        setActiveCourses(courses.filter((course) => course.students.includes(profile.username)));
     }
 
     return (<div>            

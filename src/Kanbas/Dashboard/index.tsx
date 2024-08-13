@@ -8,16 +8,28 @@ import * as userClient from "../Account/client";
 import { Link } from "react-router-dom";
 
 export default function Dashboard( 
-    { profile, setProfile, courses, setCourses} : {
+    { profile, courses, setCourses} : {
         profile: any;
-        setProfile: (profile: any) => void;
         courses: any[]; 
         setCourses: (courses: any[]) => void;})
     {
 
+    const [course, setCourse] = useState<any>({
+        _id: "0", 
+        name: "New Course", 
+        number: "New Number", 
+        author: profile.username,
+        students: [],
+        image: "/images/reactjs.jpg", 
+        startDate: "2023-09-10", 
+        endDate: "2023-12-15", 
+        department: "Department", 
+        credits: 4,
+        description: "New Description"},
+    );
+
     const [activeCourses, setActiveCourses] = useState(courses);
     const selectActiveCourses = async () => {
-
         if (profile.role == "STUDENT") {
             setActiveCourses(courses.filter((course) => course.students.includes(profile.username)));
         } else {
@@ -25,27 +37,21 @@ export default function Dashboard(
         }
     };
     useEffect(() => {
-        console.log(profile);
         selectActiveCourses();
     }, [])
-    
-    const [course, setCourse] = useState<any>({
-            _id: "0", 
-            name: "New Course", 
-            number: "New Number", 
-            author: profile.username,
-            students: [],
-            image: "/images/reactjs.jpg", 
-            startDate: "2023-09-10", 
-            endDate: "2023-12-15", 
-            department: "Department", 
-            credits: 4,
-            description: "New Description"},
-    );
 
     const deleteCourse = async (courseId: string) => {
+        const updatedCourses = courses.filter((c) => c._id !== courseId);
+        setCourses(updatedCourses);
+        setActiveCourses(updatedCourses.filter((course) => course.author === profile.username));
         await courseClient.deleteCourse(courseId);
-        setCourses(courses.filter((c) => c._id !== courseId));
+        
+    };
+
+    const dropCourse = async (course: any) => {
+        course.students.pop(profile.username);
+        await courseClient.updateCourse(course);
+        setActiveCourses(courses.filter((course) => course.students.includes(profile.username)));
     };
 
     return (
@@ -59,12 +65,14 @@ export default function Dashboard(
                                     courses={courses}
                                     setCourses={setCourses}
                                     course={course}
-                                    setCourse={setCourse}/>
+                                    setCourse={setCourse}
+                                    setActiveCourses={setActiveCourses}/>
             </FacultyRoute>
 
             <StudentRoute>
                 <CourseEnrollment  profile={profile} 
-                                    courses={courses} />
+                                    courses={courses} 
+                                    setActiveCourses={setActiveCourses}/>
             </StudentRoute>
 
             <hr />
@@ -121,6 +129,19 @@ export default function Dashboard(
                                                 Edit 
                                             </button>
                                             </FacultyRoute>
+
+                                            <StudentRoute>
+                                            <button id="wd-delete-course-click" 
+                                                onClick={
+                                                    (e) => {
+                                                        e.preventDefault(); 
+                                                        dropCourse(course);
+                                                    }
+                                                }
+                                                className="btn btn-danger float-end"> 
+                                                Drop
+                                            </button>
+                                            </StudentRoute>
 
                                         </div>
 

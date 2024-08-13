@@ -5,7 +5,10 @@ const COURSES_API = `${REMOTE_SERVER}/api/courses`;
 const QUIZZES_API = `${REMOTE_SERVER}/api/quizzes`;
 
 export const findQuizzesForCourse = async (courseId: string) => {
+    console.log("API CALL", courseId);
+    console.log(`${COURSES_API}/${courseId}/quizzes`);
     const response = await axios.get(`${COURSES_API}/${courseId}/quizzes`);
+    console.log(response.data);
     return response.data;
 };
   

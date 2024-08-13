@@ -2,22 +2,24 @@ import { useState } from "react";
 import * as client from "../Courses/client";
 
 export default function DashboardControls(
-    { profile, courses, setCourses, course, setCourse} : {
+    { profile, courses, setCourses, course, setCourse, setActiveCourses} : {
         profile: any;
         courses: any[];
         setCourses: (courses: any[]) => void;
         course: any;
-        setCourse: (course: any) => void;})
+        setCourse: (course: any) => void;
+        setActiveCourses: (courses: any[]) => void})
     {
 
     const [ error, setError ] = useState("");
 
     const addNewCourse = async () => {
         try {
-            const newCourse = await client.createCourse(course);
-            console.log(newCourse);
-            setCourses([ ...courses, newCourse]);
             setError("");
+            const newCourse = await client.createCourse(course);
+            const updatedCourses = [...courses, newCourse];
+            setActiveCourses(updatedCourses.filter((course) => course.author === profile.username));
+            setCourses([ ...courses, newCourse]);
         } catch (err: any) {
             setError(err.response.data.message);
         }
@@ -25,6 +27,7 @@ export default function DashboardControls(
 
     const updateCourse = async () => {
         try {
+            setError("");
             await client.updateCourse(course);
             setCourses(
                 courses.map((c) => {
@@ -35,7 +38,7 @@ export default function DashboardControls(
                     }
                 })
             );
-            setError("");
+            setActiveCourses(courses.filter((course) => course.author === profile.username));
         } catch (err: any) {
             setError(err.response.data.message);
         }
@@ -48,9 +51,7 @@ export default function DashboardControls(
                 New Course
 
                 <button id="wd-add-new-course-click" 
-                        onClick={() => {
-                            addNewCourse();
-                        }}
+                        onClick={addNewCourse}
                         className="btn btn-primary float-end">Add</button>
 
                 <button id="wd-update-course-click" onClick={updateCourse}
