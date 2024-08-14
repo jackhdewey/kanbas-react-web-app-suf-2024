@@ -22,6 +22,13 @@ export default function QuizControls({ cid }: { cid: string }) {
               </input>
           </div>
 
+          <button id="wd-add-quiz-group" 
+              className="btn btn-lg btn-secondary me-1 float-end">
+
+              <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+              Group
+          </button>
+
           <Link id="wd-add-quiz" 
                 key={`/Kanbas/Courses/${cid}/Quizzes/${newQuizId}`} 
                 to={`/Kanbas/Courses/${cid}/Quizzes/${newQuizId}`}
@@ -30,13 +37,6 @@ export default function QuizControls({ cid }: { cid: string }) {
                 <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                 Quiz
           </Link>
-
-          <button id="wd-add-quiz-group" 
-              className="btn btn-lg btn-secondary me-1 float-end">
-
-              <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-              Group
-          </button>
 
       </div>
     );

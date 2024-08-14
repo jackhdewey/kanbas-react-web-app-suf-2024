@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addQuiz, updateQuiz } from "./reducer";
 import * as client from "./client";
+import TOC from "./TOC";
 
 export default function DetailEditor() {
 
@@ -19,6 +20,8 @@ export default function DetailEditor() {
 
     return (
         <div id="wd-detail-editor">
+        
+            <TOC />
 
             <input id="wd-name" className="form-control" 
                     value={q &&`${q.name}`} onChange={(e) => updateQ({...q, name: e.target.value})} /><br />

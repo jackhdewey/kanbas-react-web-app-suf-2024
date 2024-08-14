@@ -59,14 +59,6 @@ export default function QuizDetails() {
                     Edit
                 </Link>
 
-                <Link 
-                    to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/QuestionEditor`} 
-                    type="button" 
-                    id="wd-edit" 
-                    className="btn btn-secondary float-middle" >
-                    <FaPencil className="position-relative me-2"/>
-                    Edit
-                </Link>
             </div>
 
             <hr />

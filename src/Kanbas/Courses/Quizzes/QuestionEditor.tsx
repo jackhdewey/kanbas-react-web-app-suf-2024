@@ -8,6 +8,7 @@ import * as client from "./client";
 import { BsGripVertical } from "react-icons/bs";
 import { FaRegEdit } from "react-icons/fa";
 import MCQuestion from "./MCQuestion";
+import TOC from "./TOC";
 
 export default function QuestionEditor() {
     
@@ -37,6 +38,9 @@ export default function QuestionEditor() {
 
     return (
         <div >
+
+            <TOC />
+            
             <div className="text-center">
                 <button id="wd-add-quiz" className="btn btn-lg btn-secondary me-1"
                     onClick={addQuestion}>
