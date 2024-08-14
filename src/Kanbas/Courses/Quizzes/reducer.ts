@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    quizzes: [],
+    quizzes: []
 };
 
 const quizzesSlice = createSlice({
@@ -9,6 +9,7 @@ const quizzesSlice = createSlice({
     initialState,
     reducers: {
         setQuizzes: (state, action) => {
+            console.log("PAYLOAD: ", action.payload);
             state.quizzes = action.payload;
         },
         addQuiz: (state, { payload: quiz }) => {

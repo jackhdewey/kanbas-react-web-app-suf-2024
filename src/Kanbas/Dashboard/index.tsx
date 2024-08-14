@@ -8,11 +8,20 @@ import * as userClient from "../Account/client";
 import { Link } from "react-router-dom";
 
 export default function Dashboard( 
-    { profile, courses, setCourses} : {
+    { profile, setProfile, courses, setCourses} : {
         profile: any;
+        setProfile: (courses: any[]) => void;
         courses: any[]; 
         setCourses: (courses: any[]) => void;})
     {
+
+    const fetchProfile = async () => {
+        const account = await userClient.profile();
+        setProfile(account); 
+    };
+    useEffect(() => {
+        fetchProfile();
+    }, []);
 
     const [course, setCourse] = useState<any>({
         _id: "0", 

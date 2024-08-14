@@ -18,8 +18,8 @@ export default function DashboardControls(
             setError("");
             const newCourse = await client.createCourse(course);
             const updatedCourses = [...courses, newCourse];
+            setCourses(updatedCourses);
             setActiveCourses(updatedCourses.filter((course) => course.author === profile.username));
-            setCourses([ ...courses, newCourse]);
         } catch (err: any) {
             setError(err.response.data.message);
         }
@@ -29,16 +29,16 @@ export default function DashboardControls(
         try {
             setError("");
             await client.updateCourse(course);
-            setCourses(
+            const updatedCourses =                 
                 courses.map((c) => {
                     if (c._id === course._id) {
                         return course;
                     } else {
                         return c;
                     }
-                })
-            );
-            setActiveCourses(courses.filter((course) => course.author === profile.username));
+            });
+            setCourses(updatedCourses);
+            setActiveCourses(updatedCourses.filter((course) => course.author === profile.username));
         } catch (err: any) {
             setError(err.response.data.message);
         }

@@ -8,6 +8,10 @@ import AssignmentEditor from "./Assignments/Editor";
 import Grades from "./Grades";
 import PeopleTable from "./People/Table";
 import Quizzes from "./Quizzes";
+import QuizDetails from "./Quizzes/QuizDetails";
+import QuizEditor from "./Quizzes/QuizEditor";
+import DetailEditor from "./Quizzes/DetailEditor";
+import QuestionEditor from "./Quizzes/QuestionEditor";
 
 export default function Courses( { courses }: {courses: any[]}) {
     
@@ -38,6 +42,9 @@ export default function Courses( { courses }: {courses: any[]}) {
                         <Route path="Assignments" element={<Assignments />} />
                         <Route path="Assignments/:aid" element={<AssignmentEditor />} />
                         <Route path="Quizzes" element={<Quizzes />} />
+                        <Route path="Quizzes/:qid" element={<QuizDetails />} />
+                        <Route path="Quizzes/:qid/Editor" element={<QuizEditor />} />
+                        <Route path="Quizzes/:qid/QuestionEditor" element={<QuestionEditor />} />
                         <Route path="Grades" element={<Grades />} />
                         <Route path="People" element={<PeopleTable />} />
                         <Route path="People/:uid" element={<PeopleTable />} />

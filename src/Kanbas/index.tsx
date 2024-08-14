@@ -14,13 +14,6 @@ import "./styles.css";
 export default function Kanbas() {
 
     const [profile, setProfile] = useState<any>({});
-    const fetchProfile = async () => {
-        const account = await userClient.profile();
-        setProfile(account); 
-    };
-    useEffect(() => {
-        fetchProfile();
-    }, []);
 
     const [courses, setCourses] = useState<any[]>([]);
 
@@ -49,12 +42,15 @@ export default function Kanbas() {
                             <Route path="Dashboard" element={<ProtectedRoute>
                                                             <Dashboard 
                                                                 profile={profile}
+                                                                setProfile={setProfile}
                                                                 courses={courses}
                                                                 setCourses={setCourses}/>
                                                             </ProtectedRoute>
                                                             } />
                                                             
-                            <Route path="Courses/:cid/*" element={<ProtectedRoute><Courses courses={courses}/></ProtectedRoute>}/>
+                            <Route path="Courses/:cid/*" element={<ProtectedRoute>
+                                                                    <Courses courses={courses}/>
+                                                                </ProtectedRoute>}/>
                             <Route path="Calendar" element={<h1>Calendar</h1>}/>
                             <Route path="Inbox" element={<h1>Inbox</h1>}/>
                         </Routes>
