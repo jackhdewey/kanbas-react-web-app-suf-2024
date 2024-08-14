@@ -23,6 +23,8 @@ export default function DetailEditor() {
         
             <TOC />
 
+            <hr />
+
             <input id="wd-name" className="form-control" 
                     value={q &&`${q.name}`} onChange={(e) => updateQ({...q, name: e.target.value})} /><br />
 

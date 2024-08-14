@@ -40,6 +40,8 @@ export default function QuestionEditor() {
         <div >
 
             <TOC />
+
+            <hr />
             
             <div className="text-center">
                 <button id="wd-add-quiz" className="btn btn-lg btn-secondary me-1"

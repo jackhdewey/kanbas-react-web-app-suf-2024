@@ -12,7 +12,6 @@ export default function QuizEditor() {
                     <Route path="Details" element={<DetailEditor />} />
                     <Route path="Questions" element={<QuestionEditor />} />
                 </Routes>
-                <DetailEditor />
             </div>         
         </div>
     );
