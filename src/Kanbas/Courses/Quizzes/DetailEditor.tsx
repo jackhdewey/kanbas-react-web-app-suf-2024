@@ -16,6 +16,12 @@ export default function DetailEditor() {
     const saveQuiz = async (quiz: any) => {
         await client.updateQuiz(quiz)
         dispatch(updateQuiz(quiz));
+    } 
+    
+    const saveAndPublish = async (quiz: any) => {
+        quiz = {...quiz, published: true};
+        await client.updateQuiz(quiz)
+        dispatch(updateQuiz(quiz));
     }
 
     return (
@@ -244,9 +250,9 @@ export default function DetailEditor() {
                 <Link 
                     to={`/Kanbas/Courses/${cid}/Quizzes`} 
                     type="button" 
-                    id="wd-save" 
+                    id="wd-save-and-publish" 
                     className="btn btn-danger float-center me-2" 
-                    onClick={ () => saveQuiz(q) } >
+                    onClick={ () => saveAndPublish(q) } >
                     Save and Publish
                 </Link>  
 

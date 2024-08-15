@@ -1,41 +1,12 @@
-import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { FaPencil } from "react-icons/fa6";
-import { addQuiz, updateQuiz } from "./reducer";
-import * as client from "./client";
 
 export default function QuizDetails() {
 
     const { cid, qid } = useParams();
     const { quizzes } = useSelector((state: any) => state.quizzesReducer);
-    
     let quiz = quizzes.find((a: any) => a._id === qid);
-    let isNew = false;
-    if (!quiz) {
-        isNew = true;
-        quiz = {
-            "_id": qid,
-            "name": "New Quiz",    
-            "quiz_type": "GRADED",
-            "group": "QUIZZES",
-            "shuffle_answers": "NO",
-            "multiple_attempts": "NO",
-            "num_attempts": 1,
-            "course": cid, 
-            "date_available": "2024-06-24", 
-            "due_date":"2024-06-24", 
-            "points":"100", 
-            "description":"a test of your knowledge"
-        }
-    }
-    const [ a, updateA ] = useState<any>(quiz);
-
-    const dispatch = useDispatch();
-    const newQuiz = async (quiz: any) => {
-        const newQuiz = await client.createQuiz(cid as string, quiz);
-        dispatch(addQuiz(newQuiz));
-    }
 
     return (
 
@@ -43,7 +14,7 @@ export default function QuizDetails() {
 
             <div className="clearfix text-center">
                 <Link 
-                    to={`/Kanbas/Courses/${cid}/Quizzes`} 
+                    to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/Quiz`} 
                     type="button" 
                     id="wd-preview" 
                     className="btn btn-secondary float-middle me-2" >
@@ -81,7 +52,7 @@ export default function QuizDetails() {
                 </div>
                 
                 <div className="col-5">
-                    {a && a.points}
+                    {quiz && quiz.points}
                 </div>
             </div>
 

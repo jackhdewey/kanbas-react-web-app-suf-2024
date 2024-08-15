@@ -2,23 +2,29 @@ import { useState } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { FaPlus } from "react-icons/fa6";
-import { addQuiz, updateQuiz } from "./reducer";
-import * as client from "./client";
+
+import { FaPlus, FaTrash } from "react-icons/fa6";
 import { BsGripVertical } from "react-icons/bs";
 import { FaRegEdit } from "react-icons/fa";
-import MCQuestion from "./MCQuestion";
+
+import { updateQuiz } from "./reducer";
+import * as client from "./client";
+import Question from "./Question";
 import TOC from "./TOC";
+import { IoEllipsisVertical } from "react-icons/io5";
 
 export default function QuestionEditor() {
     
-    const { cid, qid, qid2 } = useParams();
+    const { cid, qid, qsid } = useParams();
     const { quizzes } = useSelector((state: any) => state.quizzesReducer);
     let quiz = quizzes.find((a: any) => a._id === qid);
-
     const [questions, setQuestions ] = useState(quiz.questions);
-    const addQuestion = () => {
+
+    const [ editing, setEditing ] = useState(false);
+
+    const addQuestion = async () => {
         const newQuestion = {
+            id: new Date().getTime().toString(),
             name: "Easy Question",
             type: "Multiple Choice",
             points: 10,
@@ -26,13 +32,22 @@ export default function QuestionEditor() {
             answers: []
         }
         setQuestions([...questions, newQuestion]);
+        quiz = {...quiz, questions: questions};
+        await client.updateQuiz(quiz);
+        dispatch(updateQuiz(quiz));
     };
 
-    const [ q, updateQ ] = useState<any>(quiz);
+    const deleteQuestion = async (qsid: string) => {
+        setQuestions(questions.filter((q: any) => q.id !== qsid));
+        quiz = {...quiz, questions: questions};
+        await client.updateQuiz(quiz);
+        dispatch(updateQuiz(quiz));
+    };
 
     const dispatch = useDispatch();
     const saveQuiz = async (quiz: any) => {
-        await client.updateQuiz(quiz)
+        quiz = {...quiz, questions: questions};
+        await client.updateQuiz(quiz);
         dispatch(updateQuiz(quiz));
     }
 
@@ -53,7 +68,7 @@ export default function QuestionEditor() {
 
             <hr />
 
-            <MCQuestion />
+            {editing && <Question />}
 
             <hr />
 
@@ -63,33 +78,41 @@ export default function QuestionEditor() {
             </div>
 
             <ul className="wd-quizzes list-group rounded-0">
-                {quiz && questions.filter((quiz: any) => quiz.course === cid).map((quiz: any) => (
+                {quiz && questions.map((question: any) => (
                     <li className="wd-quiz list-group-item p-3 ps-1">
                         <div className="row">
 
                             <div className="col-1 text-nowrap">
                                 <BsGripVertical className="me-2 fs-3" />
-                                <FaRegEdit className="text-success me-2 fs-3"/>
                             </div>
 
                             <div className="col-10">
                                  
-                                {quiz.name}
+                                {question.name}
                       
                                 <br />
-
-                                <b> Available </b> 
-                                {quiz.date_available.split("-")[1] + " "}
-                                {quiz.date_available.split("-")[2]} at 12:00am |  <b> Due </b> 
-                                {quiz.due_date.split("-")[1] + " "} 
-                                {quiz.due_date.split("-")[2]} at 11:59pm |  
-                                {" " + quiz.points} pts
+                
+                                {" " + question.points} pts
                             </div>
                                     
                             <div className="col-1">
-                                { /* <QuizControlButtons 
-                                    aid={quiz._id} 
-                                    deleteQuiz={removeQuiz}/>  */}  
+                                <div //onClick={() => deleteQuiz(aid)/}
+                                    className="float-end text-nowrap">
+                                
+                                    <FaRegEdit className="text-success me-2 fs-3"
+                                        onClick={() => 
+                                            setEditing(!editing)
+                                        }/>
+                                    <FaTrash className="text-danger me-2 mb-1"
+                                        onClick={() => {
+                                            const remove = window.confirm(`Remove quiz ${question.id}`)
+                                            if (remove) {
+                                                deleteQuestion(question.id)}
+                                            }
+                                        
+                                        }/>
+                                    <IoEllipsisVertical className="fs-4" />
+                                </div> 
                             </div>
 
                         </div>
@@ -107,7 +130,7 @@ export default function QuestionEditor() {
                     type="button" 
                     id="wd-save" 
                     className="btn btn-danger float-center me-2" 
-                    onClick={ () => saveQuiz(q) } >
+                    onClick={ () => saveQuiz(quiz) } >
                     Save and Publish
                 </Link>  
 
@@ -116,7 +139,7 @@ export default function QuestionEditor() {
                     type="button" 
                     id="wd-save" 
                     className="btn btn-warning float-center me-2" 
-                    onClick={ () => saveQuiz(q) } >
+                    onClick={ () => saveQuiz(quiz) } >
                     Save
                 </Link>  
 

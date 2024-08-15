@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { FaRegEdit } from "react-icons/fa";
+
 import { BsGripVertical } from "react-icons/bs";
+import { IoEllipsisVertical } from "react-icons/io5";
+import { ImBlocked } from "react-icons/im";
+import { FaTrash } from "react-icons/fa"
+import { FaRegEdit } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
 
 import QuizControls from "./QuizControls";
-//import AssignmentControlButtons from "./AssignmentControlButtons";
-import { setQuizzes, deleteQuiz } from "./reducer";
+import { setQuizzes, deleteQuiz, updateQuiz } from "./reducer";
 import * as client from "./client";
-//import "./index.css"
 
 export default function Quizzes() {
 
@@ -27,15 +30,28 @@ export default function Quizzes() {
     const { quizzes } = useSelector((state: any) => state.quizzesReducer);
 
     const removeQuiz = async (quizId: string) => {
-        console.log(quizId);
         await client.deleteQuiz(quizId);
         dispatch(deleteQuiz(quizId));
+    }
+
+    const publishQuiz = async (quizId: string) => {
+        let quiz = quizzes.find((a: any) => a._id === quizId);
+        quiz = {...quiz, published: true};
+        await client.updateQuiz(quiz);
+        dispatch(updateQuiz(quiz));
+    }
+
+    const unPublishQuiz = async (quizId: string) => {
+        let quiz = quizzes.find((a: any) => a._id === quizId);
+        quiz = {...quiz, published: false};
+        await client.updateQuiz(quiz);
+        dispatch(updateQuiz(quiz));
     }
 
     return (
         <div id="wd-quizzes">
 
-            {cid && <QuizControls cid={cid} />}
+            {<QuizControls />}
             
             <br/><br/><br/>
 
@@ -55,7 +71,6 @@ export default function Quizzes() {
 
                                         <div className="col-1 text-nowrap">
                                             <BsGripVertical className="me-2 fs-3" />
-                                            <FaRegEdit className="text-success me-2 fs-3"/>
                                         </div>
 
                                         <div className="col-10">
@@ -69,17 +84,45 @@ export default function Quizzes() {
                                             <br />
 
                                             <b> Available </b> 
-                                            {quiz.date_available.split("-")[1] + " "}
-                                            {quiz.date_available.split("-")[2]} at 12:00am |  <b> Due </b> 
+                                            { /* quiz.date_available.split("-")[1] + " " */}
+                                            { /* quiz.date_available.split("-")[2] */} |  
+                                            <b> Due </b> 
                                             {quiz.due_date.split("-")[1] + " "} 
                                             {quiz.due_date.split("-")[2]} at 11:59pm |  
-                                            {" " + quiz.points} pts
+                                            {" " + quiz.points} pts |
+                                            {" " + quiz.questions.length} Questions
                                         </div>
 
                                         <div className="col-1">
-                                            { /* <QuizControlButtons 
-                                                aid={quiz._id} 
-                                                deleteQuiz={removeQuiz}/>  */}  
+                                            <div className="float-end text-nowrap">
+                                                
+                                                {quiz.published ? 
+                                                
+                                                    <FaCheckCircle style={{ top: "2px "}} className="text-success me-1 fs-5" 
+                                                    onClick={() => unPublishQuiz(quiz._id)}/>
+                                                                
+                                                                : 
+
+                                                    <ImBlocked className="text-danger me-2" 
+                                                                onClick={() => publishQuiz(quiz._id)}/>}
+
+                                                <Link 
+                                                    key={`/Kanbas/Courses/${cid}/Quizzes/${quiz._id}`} 
+                                                    to={`/Kanbas/Courses/${cid}/Quizzes/${quiz._id}`} 
+                                                    className="wd-quiz-link link-dark link-underline-light">
+                                                    <FaRegEdit className="text-success me-2 fs-3"/>
+                                                </Link>
+                                                
+                                                <FaTrash className="text-danger me-2 mb-1"
+                                                    onClick={() => {
+                                                        const remove = window.confirm(`Remove quiz ${quiz._id}`)
+                                                        if (remove) {
+                                                            removeQuiz(quiz._id)}
+                                                        }
+                                                    }/>
+                                                <IoEllipsisVertical className="fs-4" />
+                                            </div>
+
                                         </div>
 
                                     </div>
