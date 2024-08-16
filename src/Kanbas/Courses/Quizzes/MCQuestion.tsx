@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
-import * as client from "./client";
 
 
 export default function MCQuestion({question, setQuestion, updateQuestion} : 
@@ -9,6 +8,10 @@ export default function MCQuestion({question, setQuestion, updateQuestion} :
         updateQuestion: (question: any) => void  }) {
 
     const [ answers, setAnswers ] = useState(question.answers);
+
+    useEffect(() => {
+        setAnswers(question.answers);
+    }, [])
 
     const addAnswer = () => {
         const newAnswer = {

@@ -1,12 +1,15 @@
 import MCQuestion from "./MCQuestion";
 import TFQuestion from "./TFQuestion";
 import FillQuestion from "./FillQuestion";
+import { useState } from "react";
 
 
 export default function Question({activeQuestion, setActiveQuestion, updateQuestion } : 
     {   activeQuestion: any, 
         setActiveQuestion: (question: any) => void,
         updateQuestion: (question: any) => void }) {
+
+    const [ answers, setAnswers ] = useState(activeQuestion.answers);
 
     return (
         <div className="container">

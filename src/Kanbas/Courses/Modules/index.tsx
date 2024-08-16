@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import { BsGripVertical } from "react-icons/bs";
-
 import ModuleControls from "./ModuleControls";
 import ModuleControlButtons from "./ModuleControlButtons";
 import LessonControlButtons from "./LessonControlButtons";
 import { setModules, addModule, editModule, updateModule, deleteModule } from "./reducer";
 import * as client from "./client";
 import "./index.css"
+
 
 export default function Modules() {
 
