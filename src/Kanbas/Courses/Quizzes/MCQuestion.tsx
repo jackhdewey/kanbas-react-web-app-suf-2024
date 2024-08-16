@@ -1,27 +1,40 @@
 import { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router";
+import * as client from "./client";
 
-export default function MCQuestion({question, setQuestion} : 
+
+export default function MCQuestion({question, setQuestion, updateQuestion} : 
     {   question: any,
-        setQuestion: (question: any) => void }) {
+        setQuestion: (question: any) => void,
+        updateQuestion: (question: any) => void  }) {
 
-    //const { qid } = useParams();
-    //const { quizzes } = useSelector((state: any) => state.quizzesReducer);
-    //let quiz = quizzes.find((a: any) => a._id === qid);
+    const [ answers, setAnswers ] = useState(question.answers);
 
-    const addAnswer = (answer: any) => {
-        const newAnswers = [...question.answers, answer]; 
+    const addAnswer = () => {
+        const newAnswer = {
+            id: new Date().getTime().toString(),
+            value: 0,
+            correct: false,
+        }
+        console.log(newAnswer.id);
+        const newAnswers = [...question.answers, newAnswer]; 
+        setAnswers(newAnswers);
         setQuestion({...question, answers: newAnswers});
     };
 
     const updateAnswer = (answer: any) => {
-
+        console.log(answer.id);
+        const updatedAnswers = question.answers.filter((a: any) => a.id !== answer.id);
+        const newAnswers = [...updatedAnswers, answer]; 
+        setAnswers(newAnswers);
+        setQuestion({...question, answers: newAnswers});
     }
 
     const deleteAnswer = (answer: any) => {
-
+        console.log(answer.id);
+        const updatedAnswers = question.answers.filter((a: any) => a.id !== answer.id); 
+        setAnswers(updatedAnswers);
+        setQuestion({...question, answers: updatedAnswers});
     }
 
     return (
@@ -36,7 +49,7 @@ export default function MCQuestion({question, setQuestion} :
             </button>
 
             <ul className="wd-quizzes list-group rounded-0 w-75 m-2">
-                {question.answers && question.answers.map((answer: any, i: number) => ( 
+                {answers.map((answer: any, i: number) => ( 
                     <li className="row list-group-item">
 
                         <label htmlFor={`answer-${i}`}>
@@ -45,7 +58,7 @@ export default function MCQuestion({question, setQuestion} :
                                     checked={answer.correct} 
                                     onChange={(e) => {
                                         const newAnswer = {...answer, correct: e.target.value};
-                                        addAnswer(newAnswer);
+                                        updateAnswer(newAnswer);
                                     }}>
                             </input>
                         </label>
@@ -53,7 +66,7 @@ export default function MCQuestion({question, setQuestion} :
                         <input id={`answer-${i}`} className="form-control" 
                             value={answer.value} onChange={(e) => {
                                 const newAnswer = {...answer, value: e.target.value};
-                                addAnswer(newAnswer);
+                                updateAnswer(newAnswer);
                             }}>
                         </input>  
 
@@ -61,7 +74,7 @@ export default function MCQuestion({question, setQuestion} :
                                 onClick={() => {
                                 const remove = window.confirm(`Remove question ${question.id}`)
                                     if (remove) {
-                                        deleteAnswer(question.id)};
+                                        deleteAnswer(answer)};
                                     }
                                 }/>
                     </li> 

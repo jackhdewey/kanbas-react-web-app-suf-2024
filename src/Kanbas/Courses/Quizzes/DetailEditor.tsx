@@ -105,7 +105,7 @@ export default function DetailEditor() {
             </div>
 
             <div className="col-3">
-                <input id="wd-display-grade-as" className="form-control" type="number" value={quiz.time_limit}
+                <input id="wd-display-grade-as" className="form-control" type="number" value={q.time_limit}
                 onChange={(e) => updateQ({...q, time_limit: e.target.value})}></input>
             </div>
 
@@ -148,7 +148,7 @@ export default function DetailEditor() {
             </div>
 
             <div className="col-3">
-                <input id="wd-display-grade-as" className="form-control" value={quiz.access_code}
+                <input id="wd-display-grade-as" className="form-control" value={q.access_code}
                     onChange={(e) => updateQ({...q, time_limit: e.target.value})}></input>
             </div>
 

@@ -1,9 +1,6 @@
-import { useState } from "react";
 import MCQuestion from "./MCQuestion";
 import TFQuestion from "./TFQuestion";
 import FillQuestion from "./FillQuestion";
-import { updateQuiz } from "./reducer";
-import * as client from "./client";
 
 
 export default function Question({activeQuestion, setActiveQuestion, updateQuestion } : 
@@ -41,7 +38,9 @@ export default function Question({activeQuestion, setActiveQuestion, updateQuest
      
             <hr />
 
-            {activeQuestion.type==="MC" && <MCQuestion question={activeQuestion} setQuestion={setActiveQuestion}/>}
+            {activeQuestion.type==="MC" && <MCQuestion  question={activeQuestion} 
+                                                        setQuestion={setActiveQuestion} 
+                                                        updateQuestion={updateQuestion}/>}
             {activeQuestion.type==="TF" && <TFQuestion setQuestion={activeQuestion}/>}
             {activeQuestion.type==="FB" && <FillQuestion setQuestion={setActiveQuestion}/>}
 
