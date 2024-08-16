@@ -20,7 +20,7 @@ export default function Quiz() {
         }
     }
 
-    const answers = [{value: 10}];
+    const answers = [{}];
     
     return (
         <div>   

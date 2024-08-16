@@ -18,9 +18,10 @@ export default function QuestionEditor() {
     const { cid, qid, qsid } = useParams();
     const { quizzes } = useSelector((state: any) => state.quizzesReducer);
     let quiz = quizzes.find((a: any) => a._id === qid);
-    const [questions, setQuestions ] = useState(quiz.questions);
 
+    const [ questions, setQuestions ] = useState(quiz.questions);
     const [ editing, setEditing ] = useState(false);
+    const [ activeQuestion, setActiveQuestion ] = useState(questions[0]);
 
     const addQuestion = async () => {
         const newQuestion = {
@@ -28,11 +29,13 @@ export default function QuestionEditor() {
             name: "Easy Question",
             type: "Multiple Choice",
             points: 10,
-            question: "",
+            question: "Enter question text here",
             answers: []
         }
-        setQuestions([...questions, newQuestion]);
-        quiz = {...quiz, questions: questions};
+        const newQuestions = [...questions, newQuestion]
+        setQuestions(newQuestions);
+        quiz = {...quiz, questions: newQuestions};
+        console.log(quiz);
         await client.updateQuiz(quiz);
         dispatch(updateQuiz(quiz));
     };
@@ -68,7 +71,7 @@ export default function QuestionEditor() {
 
             <hr />
 
-            {editing && <Question />}
+            {editing && <Question activeQuestion={activeQuestion} setQuestions={setQuestions}/>}
 
             <hr />
 
@@ -96,21 +99,21 @@ export default function QuestionEditor() {
                             </div>
                                     
                             <div className="col-1">
-                                <div //onClick={() => deleteQuiz(aid)/}
-                                    className="float-end text-nowrap">
+                                <div className="float-end text-nowrap">
                                 
                                     <FaRegEdit className="text-success me-2 fs-3"
-                                        onClick={() => 
-                                            setEditing(!editing)
-                                        }/>
+                                                onClick={() => {
+                                                    setActiveQuestion(question);
+                                                    setEditing(true);
+                                                    }
+                                                }/>
                                     <FaTrash className="text-danger me-2 mb-1"
-                                        onClick={() => {
-                                            const remove = window.confirm(`Remove quiz ${question.id}`)
-                                            if (remove) {
-                                                deleteQuestion(question.id)}
-                                            }
-                                        
-                                        }/>
+                                                onClick={() => {
+                                                    const remove = window.confirm(`Remove question ${question.id}`)
+                                                    if (remove) {
+                                                        deleteQuestion(question.id)}
+                                                    }
+                                                }/>
                                     <IoEllipsisVertical className="fs-4" />
                                 </div> 
                             </div>

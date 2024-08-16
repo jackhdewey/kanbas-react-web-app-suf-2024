@@ -3,22 +3,22 @@ import { FaPlus } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 
-export default function MCQuestion() {
+export default function MCQuestion({setQuestion} : {setQuestion: (question:any) => void}) {
 
-    const { cid, qid, qid2 } = useParams();
+    const { cid, qid, qsid } = useParams();
     const { quizzes } = useSelector((state: any) => state.quizzesReducer);
     let quiz = quizzes.find((a: any) => a._id === qid);
-    let question = quiz.questions.find((a: any) => a._id === qid);
+    let question = quiz.questions.find((a: any) => a._id === qsid);
     const [ answers, setAnswers ] = useState(question.answers);
-    console.log(answers);
-
+    const [ answer, setAnswer ] = useState(question.answers[0]);
+    
     const addAnswer = () => {
         let newAnswers = [...answers, {value: 1, correct: false}]; 
         setAnswers(newAnswers);
     };
 
-    const updateAnswer = (answer: any) => { 
-        setAnswers([...answers, answer]);
+    const updateAnswer = () => {
+
     }
 
     return (
@@ -36,7 +36,11 @@ export default function MCQuestion() {
                 {answers && answers.map((answer: any, i: number) => ( 
                     <li className="row list-group-item">
                         <label htmlFor={`answer-${i}`}>
-                            <input type="radio" name="answers" className="form-check-input" checked={answer.correct} onChange={() => {answer.correct=!answer.correct}} ></input>
+                            <input type="radio" name="answers" className="form-check-input" checked={answer.correct} onChange={(e) => {
+                                const newAnswer = {...answer, correct: e.target.value}
+                                setAnswers([...answers, newAnswer]);
+                            }
+                            }></input>
                         </label>
                         <input id={`answer-${i}`} className="form-control" value={answer.value} onChange={(e) => {}}/>  
                     </li> 
