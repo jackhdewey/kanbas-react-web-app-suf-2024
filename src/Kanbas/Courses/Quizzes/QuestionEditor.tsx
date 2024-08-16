@@ -2,57 +2,73 @@ import { useState } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
 import { FaPlus, FaTrash } from "react-icons/fa6";
 import { BsGripVertical } from "react-icons/bs";
 import { FaRegEdit } from "react-icons/fa";
-
-import { updateQuiz } from "./reducer";
-import * as client from "./client";
+import { IoEllipsisVertical } from "react-icons/io5";
 import Question from "./Question";
 import TOC from "./TOC";
-import { IoEllipsisVertical } from "react-icons/io5";
+import { updateQuiz } from "./reducer";
+import * as client from "./client";
+
 
 export default function QuestionEditor() {
     
-    const { cid, qid, qsid } = useParams();
+    const { cid, qid } = useParams();
     const { quizzes } = useSelector((state: any) => state.quizzesReducer);
     let quiz = quizzes.find((a: any) => a._id === qid);
 
     const [ questions, setQuestions ] = useState(quiz.questions);
-    const [ editing, setEditing ] = useState(false);
-    const [ activeQuestion, setActiveQuestion ] = useState(questions[0]);
+    const dispatch = useDispatch();
 
     const addQuestion = async () => {
         const newQuestion = {
             id: new Date().getTime().toString(),
             name: "Easy Question",
-            type: "Multiple Choice",
+            type: "MC",
             points: 10,
             question: "Enter question text here",
             answers: []
         }
-        const newQuestions = [...questions, newQuestion]
+        const newQuestions = [...questions, newQuestion];
+        const newPoints = quiz.points + newQuestion.points;
         setQuestions(newQuestions);
-        quiz = {...quiz, questions: newQuestions};
+        quiz = {...quiz, questions: newQuestions, points: newPoints};
         console.log(quiz);
-        await client.updateQuiz(quiz);
         dispatch(updateQuiz(quiz));
+        await client.updateQuiz(quiz);
     };
 
     const deleteQuestion = async (qsid: string) => {
-        setQuestions(questions.filter((q: any) => q.id !== qsid));
-        quiz = {...quiz, questions: questions};
-        await client.updateQuiz(quiz);
+        const newQuestions = questions.filter((q: any) => q.id !== qsid);
+        const newPoints = quiz.points - questions.find((q: any) => q.id === qsid).points;
+        setQuestions(newQuestions);
+        quiz = {...quiz, questions: newQuestions, points: newPoints};
+        console.log(quiz);
         dispatch(updateQuiz(quiz));
+        await client.updateQuiz(quiz);
     };
 
-    const dispatch = useDispatch();
+    const updateQuestion = async (question: any) => {
+        const updatedQuestions = questions.filter((q: any) => q.id !== question.id)
+        let newPoints = quiz.points - questions.find((q: any) => q.id === question.id).points;
+        const newQuestions = [...updatedQuestions, question];
+        newPoints += question.points;
+        setQuestions(newQuestions);
+        quiz = {...quiz, questions: newQuestions, points: newPoints};
+        console.log(quiz);
+        dispatch(updateQuiz(quiz));
+        await client.updateQuiz({...quiz, questions: newQuestions});
+    };
+
     const saveQuiz = async (quiz: any) => {
         quiz = {...quiz, questions: questions};
-        await client.updateQuiz(quiz);
         dispatch(updateQuiz(quiz));
+        await client.updateQuiz(quiz);
     }
+
+    const [ editing, setEditing ] = useState(false);
+    const [ activeQuestion, setActiveQuestion ] = useState({});
 
     return (
         <div >
@@ -71,7 +87,9 @@ export default function QuestionEditor() {
 
             <hr />
 
-            {editing && <Question activeQuestion={activeQuestion} setQuestions={setQuestions}/>}
+            {editing && <Question   activeQuestion={activeQuestion} 
+                                    setActiveQuestion={setActiveQuestion}
+                                    updateQuestion={updateQuestion}/>}
 
             <hr />
 
@@ -90,11 +108,8 @@ export default function QuestionEditor() {
                             </div>
 
                             <div className="col-10">
-                                 
                                 {question.name}
-                      
                                 <br />
-                
                                 {" " + question.points} pts
                             </div>
                                     

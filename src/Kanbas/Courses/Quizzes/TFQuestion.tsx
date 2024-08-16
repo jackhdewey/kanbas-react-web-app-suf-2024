@@ -1,4 +1,4 @@
-export default function TFQuestion() {
+export default function TFQuestion({setQuestion} : {setQuestion: (question:any) => void}) {
     return (
         <div>
             

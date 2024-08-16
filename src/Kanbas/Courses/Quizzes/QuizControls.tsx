@@ -21,7 +21,7 @@ export default function QuizControls() {
           "course": cid, 
           "date_available": "2024-06-24", 
           "due_date":"2024-06-24", 
-          "points":"100", 
+          "points": 0, 
           "description":"a test of your knowledge",
           "questions": []
     };

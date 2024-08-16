@@ -1,17 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-
 import { BsGripVertical } from "react-icons/bs";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { ImBlocked } from "react-icons/im";
 import { FaTrash } from "react-icons/fa"
 import { FaRegEdit } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
-
 import QuizControls from "./QuizControls";
 import { setQuizzes, deleteQuiz, updateQuiz } from "./reducer";
 import * as client from "./client";
+
 
 export default function Quizzes() {
 
@@ -107,8 +106,8 @@ export default function Quizzes() {
                                                                 onClick={() => publishQuiz(quiz._id)}/>}
 
                                                 <Link 
-                                                    key={`/Kanbas/Courses/${cid}/Quizzes/${quiz._id}`} 
-                                                    to={`/Kanbas/Courses/${cid}/Quizzes/${quiz._id}`} 
+                                                    key={`/Kanbas/Courses/${cid}/Quizzes/${quiz._id}/Editor/Details`} 
+                                                    to={`/Kanbas/Courses/${cid}/Quizzes/${quiz._id}/Editor/Details`} 
                                                     className="wd-quiz-link link-dark link-underline-light">
                                                     <FaRegEdit className="text-success me-2 fs-3"/>
                                                 </Link>
