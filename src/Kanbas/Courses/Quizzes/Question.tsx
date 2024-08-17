@@ -9,8 +9,6 @@ export default function Question({activeQuestion, setActiveQuestion, updateQuest
         setActiveQuestion: (question: any) => void,
         updateQuestion: (question: any) => void }) {
 
-    const [ answers, setAnswers ] = useState(activeQuestion.answers);
-
     return (
         <div className="container">
 
@@ -44,7 +42,9 @@ export default function Question({activeQuestion, setActiveQuestion, updateQuest
             {activeQuestion.type==="MC" && <MCQuestion  question={activeQuestion} 
                                                         setQuestion={setActiveQuestion} 
                                                         updateQuestion={updateQuestion}/>}
-            {activeQuestion.type==="TF" && <TFQuestion setQuestion={activeQuestion}/>}
+            {activeQuestion.type==="TF" && <TFQuestion  question={activeQuestion}
+                                                        setQuestion={setActiveQuestion}
+                                                        updateQuestion={updateQuestion}/>}
             {activeQuestion.type==="FB" && <FillQuestion setQuestion={setActiveQuestion}/>}
 
             <button className="btn btn-warning" 
