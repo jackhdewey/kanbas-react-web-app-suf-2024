@@ -5,6 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { addQuiz } from "./reducer";
 import * as client from "./client";
+import FacultyRoute from "../../FacultyRoute";
 
 
 export default function QuizControls() {
@@ -36,6 +37,7 @@ export default function QuizControls() {
  
     return (
       <div id="wd-quiz-controls" className="text-nowrap">
+
           <div>
               <CiSearch className="position-absolute" style={{top: "170px", width: "40px"}}/>
               <input id="wd-search-quiz" 
@@ -51,13 +53,16 @@ export default function QuizControls() {
               <BsThreeDotsVertical className="position-relative" style={{ bottom: "1px" }}/> 
           </button>
 
-          <button id="wd-add-quiz" 
+        <FacultyRoute >
+            <button id="wd-add-quiz" 
                 className="btn btn-lg btn-danger me-1 float-end"
                 onClick={() => newQuiz(quiz)}>
 
               <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
               Quiz
-          </button>
+            </button>
+        </FacultyRoute>
+
 
       </div>
     );

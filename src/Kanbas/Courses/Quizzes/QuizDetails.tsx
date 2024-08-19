@@ -1,6 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaPencil } from "react-icons/fa6";
+import FacultyRoute from "../../FacultyRoute";
+import StudentRoute from "../../StudentRoute";
 
 export default function QuizDetails() {
 
@@ -13,22 +15,37 @@ export default function QuizDetails() {
         <div id="wd-quiz-details">
 
             <div className="clearfix text-center">
-                <Link 
-                    to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/Quiz`} 
-                    type="button" 
-                    id="wd-preview" 
-                    className="btn btn-secondary float-middle me-2" >
-                    Preview
-                </Link>  
 
-                <Link 
-                    to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/Editor`} 
-                    type="button" 
-                    id="wd-edit" 
-                    className="btn btn-secondary float-middle" >
-                    <FaPencil className="position-relative me-2"/>
-                    Edit
-                </Link>
+                <StudentRoute >
+                    <Link 
+                        to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/Quiz`} 
+                        type="button" 
+                        id="wd-preview" 
+                        className="btn btn-secondary float-middle me-2" >
+                        Take Quiz
+                    </Link>  
+                </StudentRoute>
+
+                <FacultyRoute >
+                    <Link 
+                        to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/Quiz`} 
+                        type="button" 
+                        id="wd-preview" 
+                        className="btn btn-secondary float-middle me-2" >
+                        Preview
+                    </Link>  
+                </FacultyRoute>
+
+                <FacultyRoute >
+                    <Link 
+                        to={`/Kanbas/Courses/${cid}/Quizzes/${qid}/Editor`} 
+                        type="button" 
+                        id="wd-edit" 
+                        className="btn btn-secondary float-middle" >
+                        <FaPencil className="position-relative me-2"/>
+                        Edit
+                    </Link>
+                </FacultyRoute>
 
             </div>
 

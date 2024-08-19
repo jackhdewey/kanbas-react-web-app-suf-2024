@@ -10,6 +10,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import QuizControls from "./QuizControls";
 import { setQuizzes, deleteQuiz, updateQuiz } from "./reducer";
 import * as client from "./client";
+import FacultyRoute from "../../FacultyRoute";
 
 
 export default function Quizzes() {
@@ -105,21 +106,26 @@ export default function Quizzes() {
                                                     <ImBlocked className="text-danger me-2" 
                                                                 onClick={() => publishQuiz(quiz._id)}/>}
 
-                                                <Link 
-                                                    key={`/Kanbas/Courses/${cid}/Quizzes/${quiz._id}/Editor/Details`} 
-                                                    to={`/Kanbas/Courses/${cid}/Quizzes/${quiz._id}/Editor/Details`} 
-                                                    className="wd-quiz-link link-dark link-underline-light">
-                                                    <FaRegEdit className="text-success me-2 fs-3"/>
-                                                </Link>
-                                                
-                                                <FaTrash className="text-danger me-2 mb-1"
-                                                    onClick={() => {
-                                                        const remove = window.confirm(`Remove quiz ${quiz._id}`)
-                                                        if (remove) {
-                                                            removeQuiz(quiz._id)}
-                                                        }
-                                                    }/>
-                                                <IoEllipsisVertical className="fs-4" />
+                                                <FacultyRoute >
+                                                    <Link 
+                                                        key={`/Kanbas/Courses/${cid}/Quizzes/${quiz._id}/Editor/Details`} 
+                                                        to={`/Kanbas/Courses/${cid}/Quizzes/${quiz._id}/Editor/Details`} 
+                                                        className="wd-quiz-link link-dark link-underline-light">
+                                                        <FaRegEdit className="text-success me-2 fs-3"/>
+                                                    </Link>
+                                                </FacultyRoute>
+
+                                                <FacultyRoute >
+                                                    <FaTrash className="text-danger me-2 mb-1"
+                                                        onClick={() => {
+                                                            const remove = window.confirm(`Remove quiz ${quiz._id}`)
+                                                            if (remove) {
+                                                                removeQuiz(quiz._id)}
+                                                            }
+                                                        }/>
+                                                    <IoEllipsisVertical className="fs-4" />
+                                                </FacultyRoute>
+
                                             </div>
 
                                         </div>

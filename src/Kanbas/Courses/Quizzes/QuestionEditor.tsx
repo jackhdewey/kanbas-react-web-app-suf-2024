@@ -47,6 +47,7 @@ export default function QuestionEditor() {
         console.log(quiz);
         dispatch(updateQuiz(quiz));
         await client.updateQuiz(quiz);
+        setEditing(false);
     };
 
     const updateQuestion = async (question: any) => {
@@ -59,12 +60,14 @@ export default function QuestionEditor() {
         console.log(quiz);
         dispatch(updateQuiz(quiz));
         await client.updateQuiz({...quiz, questions: newQuestions});
+        setEditing(false);
     };
 
     const saveQuiz = async (quiz: any) => {
         quiz = {...quiz, questions: questions};
         dispatch(updateQuiz(quiz));
         await client.updateQuiz(quiz);
+        setEditing(false);
     }
 
     const [ editing, setEditing ] = useState(false);
@@ -148,7 +151,10 @@ export default function QuestionEditor() {
                     type="button" 
                     id="wd-save" 
                     className="btn btn-danger float-center me-2" 
-                    onClick={ () => saveQuiz(quiz) } >
+                    onClick={ () => {
+                        const published = {...quiz, published: true};
+                        saveQuiz(published);
+                        } } >
                     Save and Publish
                 </Link>  
 

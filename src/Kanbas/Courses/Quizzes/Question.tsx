@@ -41,10 +41,10 @@ export default function Question({activeQuestion, setActiveQuestion, updateQuest
 
             {activeQuestion.type==="MC" && <MCQuestion  question={activeQuestion} 
                                                         setQuestion={setActiveQuestion} 
-                                                        updateQuestion={updateQuestion}/>}
+                                                        />}
             {activeQuestion.type==="TF" && <TFQuestion  question={activeQuestion}
                                                         setQuestion={setActiveQuestion}
-                                                        updateQuestion={updateQuestion}/>}
+                                                        />}
             {activeQuestion.type==="FB" && <FillQuestion setQuestion={setActiveQuestion}/>}
 
             <button className="btn btn-warning" 
